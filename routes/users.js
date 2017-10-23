@@ -5,5 +5,7 @@ var userServer =require('../service/userServer');
 router.get('/userate', function(req, res, next) {
   userServer.userate(req, res, next);
 });
-
+router.get('/usertimes', function(req, res, next) {
+  userServer.usertimes(req, res, next);
+});
 module.exports = router;

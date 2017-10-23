@@ -4,11 +4,14 @@
 function registor(app) {
     console.log("router register")
     var requires = [
-        '../routes/users.js'
+        {
+            root:"/user",
+            require: '../routes/users.js'
+        }
     ];
 
     requires.forEach(function(item, index) {
-        app.use('/', require(item));
+        app.use(item.root, require(item.require));
     });
 
 }
