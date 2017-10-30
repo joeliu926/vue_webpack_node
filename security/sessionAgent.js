@@ -6,20 +6,6 @@
  * @type {exports}
  */
 var CONSTANT = require("../config/constant.js");
-function setUserName(req,v){
-    req.session[CONSTANT.session.userName]=v;
-}
-
-function getUserName(req){
-    return req.session[CONSTANT.session.userName]
-}
-function setUserInfo(req,info){
-    req.session[CONSTANT.session.caasUserInfo]=info;
-}
-
-function getUserInfo(req){
-    return req.session[CONSTANT.session.caasUserInfo]
-}
 
 function setUserResource(req,resources){
     req.session[CONSTANT.session.resourceCode]=resources;
@@ -41,26 +27,52 @@ function checkUserResource(req,resource){
         return false;
     }
 }
-
+//用户id
 function deleteUserId(req){
     delete req.session[CONSTANT.session.userId];
 }
 function setUserId(req,id){
+    //console.log('req---------',req.session);
     req.session[CONSTANT.session.userId]=id;
 }
 function getUserId(req){
     return req.session?req.session[CONSTANT.session.userId]:null;
 }
 
+//用户信息
+function deleteUserInfo(req){
+    delete req.session[CONSTANT.session.userInfo];
+}
+function setUserInfo(req,info){
+    req.session[CONSTANT.session.userInfo]=info;
+}
+function getUserInfo(req){
+    return req.session?req.session[CONSTANT.session.userInfo]:null;
+}
+
+
+//用户token
+function deleteUserToken(req){
+    delete req.session[CONSTANT.session.xAuthToken];
+}
+function setUserToken(req,xAuthToken){
+    req.session[CONSTANT.session.xAuthToken]=xAuthToken;
+}
+function getUserToken(req){
+    return req.session?req.session[CONSTANT.session.xAuthToken]:null;
+}
+
 module.exports ={
-    deleteUserId:deleteUserId,
-    setUserName:setUserName,
-    getUserName:getUserName,
+    deleteUserInfo:deleteUserInfo,
     setUserInfo:setUserInfo,
     getUserInfo:getUserInfo,
     setUserResource:setUserResource,
     getUserResource:getUserResource,
     checkUserResource:checkUserResource,
+    deleteUserId:deleteUserId,
     setUserId:setUserId,
-    getUserId:getUserId
+    getUserId:getUserId,
+    deleteUserToken:deleteUserToken,
+    setUserToken:setUserToken,
+    getUserToken:getUserToken
 };

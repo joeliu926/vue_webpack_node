@@ -25,20 +25,18 @@ module.exports = {
         /**caas登录用户ID*/
         userId: '__USER_ID__',
         /**登录用户名称*/
-        userName: '__USER_NAME__',
+        userInfo: '__USER_INFO__',
         /**登录时间 */
         loginTime: '__LOGIN_TIME__',
         /**登录次数*/
         loginCount: '__LOGIN_COUNT__',
         accessInfo: '__AUTH_INFO__',
-        /**ipa 用户信息  */
-        ipaUserInfo: '__IPA_USER_INFO__',
         xAuthToken: '__X_AUTH_TOKEN__',
         resourceCode: '__RESOURCE_CODE__'
     },
     //白名单
     sessionWhiteList: [
-        '/api/login/entry'
+        '/user/login/entry'
     ],
     accessWhiteList: [
         '/login/entry',
@@ -55,7 +53,6 @@ module.exports = {
         accessErr: 8003,
         userInfoErr:8004,
         authErr:8005,
-        chorusRoleErr:8006,
         dataErr:8100,
         //维护中
         operationStatus:8200

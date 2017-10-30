@@ -4,6 +4,7 @@
 
 var CONSTANT=require('../config/constant');
 var httpClient=require('../utils/httpClient');
+var logingServer = require('../security/loginserver');
 //var appUtil=require('../utils/appUtil');
 var defualtCfg={
     url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/dashboard/platform',
@@ -31,8 +32,18 @@ function userate(req, res, next){
 function usertimes(req,res,next){
 	 res.send({'usertimes':'this is user times aaaaa'});
 }
+//登录
+function loginEntry(req,res,next){
+    logingServer.loginEntry(req,res);
+}
+//登出
+function loginOutEntry(req,res,next){
+    logingServer.loginOutEntry(req,res);
+}
 
 module.exports = {
     userate: userate,
-    usertimes:usertimes
+    usertimes:usertimes,
+    loginEntry:loginEntry,
+    loginOutEntry:loginOutEntry
 }

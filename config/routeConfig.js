@@ -2,7 +2,8 @@
  * Created by JoeLiu on 2017-10-23.
  */
 function registor(app) {
-    console.log("router register")
+
+    app.use(require('../security/authentication.js'));
     var requires = [
         {
             root:"/user",
