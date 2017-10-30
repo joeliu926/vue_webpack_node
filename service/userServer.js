@@ -28,7 +28,11 @@ function userate(req, res, next){
     }
     httpClient(opt);*/
 }
+function usertimes(req,res,next){
+	 res.send({'usertimes':'this is user times aaaaa'});
+}
 
 module.exports = {
-    userate: userate
+    userate: userate,
+    usertimes:usertimes
 }
