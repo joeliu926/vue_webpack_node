@@ -38,13 +38,14 @@ module.exports = {
     },
     //白名单
     sessionWhiteList: [
-
+        '/api/login/entry'
     ],
     accessWhiteList: [
-
-    ],
-    //访问权限数组 (维护判断也在使用)
-    accessArr: [
+        '/login/entry',
+        '/login',
+        '/logout',
+        '/getMenus',
+        '/getUserInfo'
     ],
     //回数code
     code: {
