@@ -8,6 +8,10 @@ function registor(app) {
         {
             root:"/user",
             require: '../routes/users.js'
+        },
+        {
+            root:"/customers",
+            require: '../routes/customers.js'
         }
     ];
 
