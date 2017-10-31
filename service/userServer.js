@@ -5,7 +5,7 @@
 var CONSTANT=require('../config/constant');
 var httpClient=require('../utils/httpClient');
 var logingServer = require('../security/loginserver');
-//var appUtil=require('../utils/appUtil');
+//var appUtil=require('../utils/appUtils');
 var defualtCfg={
     url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/dashboard/platform',
     contentType:'application/json'
