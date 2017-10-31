@@ -37,7 +37,8 @@ module.exports = {
     },
     //白名单
     sessionWhiteList: [
-        '/user/login/entry'
+        '/user/login/entry',
+        '/api/getpublickey'
     ],
     accessWhiteList: [
         '/login/entry',

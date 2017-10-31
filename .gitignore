@@ -3,5 +3,6 @@ node_modules/
 .idea/
 dist/
 dev/
+*.key
 *.log
 .project

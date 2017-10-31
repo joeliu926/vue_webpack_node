@@ -32,12 +32,12 @@ function deleteUserId(req){
     delete req.session[CONSTANT.session.userId];
 }
 function setUserId(req,id){
-    console.log('req---------',CONSTANT.session.userId);
+   // console.log('req---------',CONSTANT.session.userId);
     req.session[CONSTANT.session.userId]=id;
 }
 function getUserId(req){
-    console.log('req.session[CONSTANT.session.ididi]',req.sessionID);
-    console.log('req.session[CONSTANT.session.userId]',req.sessionStore);
+   // console.log('req.session[CONSTANT.session.ididi]',req.sessionID);
+   // console.log('req.session[CONSTANT.session.userId]',req.sessionStore);
     return req.session?req.session[CONSTANT.session.userId]:null;
 }
 

@@ -8,6 +8,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var allowOriginUse = require('./config/allowOriginConfig');
 var CONSTANT = require('./config/constant');
+var rsaconfig = require('./config/rsaConfig');
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,7 +28,7 @@ app.use(session({
   resave:true,
   saveUninitialized:false
 }));
-
+rsaconfig.init(app);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(allowOriginUse);
 
