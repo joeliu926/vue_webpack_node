@@ -13,6 +13,7 @@ var sessionAgent = require("./sessionAgent.js");
 router.all('/*', function (req, res, next) {
     if(req.method == 'GET'){
         res.sendStatus(404);
+        //next();
         return;
     }
     if (req.method == 'OPTIONS') {

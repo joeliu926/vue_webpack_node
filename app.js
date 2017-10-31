@@ -19,13 +19,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(session({
   secret:CONSTANT.cookie.identityKey,
-  name:'rkylin',
+  name:'rkylin_sessionid',
   cookie:{maxAge:CONSTANT.cookie.maxAge},
-  resave:false,
-  saveUninitialized:true
+  resave:true,
+  saveUninitialized:false
 }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(allowOriginUse);
 
