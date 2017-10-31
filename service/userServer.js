@@ -14,20 +14,7 @@ var defualtCfg={
 function userate(req, res, next){
 
     res.send({'aaa':'aaaa'});
-    /*
-    defualtCfg.method="GET";
-    var opt=appUtil.extend({},defualtCfg)
-    opt.url+=`/resource/trend`;
-    opt.callBack=function(error, response, body){
-        if(error)
-        {
-            res.send(error);
-        }
-        else {
-            res.send(JSON.parse(body));
-        }
-    }
-    httpClient(opt);*/
+   
 }
 function usertimes(req,res,next){
 	 res.send({'usertimes':'this is user times aaaaa'});

@@ -2,8 +2,8 @@
  * Created by JoeLiux on 2017-10-23.
  */
 module.exports = {
-    remoteHost:'http://127.0.0.1',
-    remotePort:'8080',
+    remoteHost:'http://101.132.161.222',
+    remotePort:'8082',
     cookie: {
         identityKey:"rky_mc_web_node",
         maxAge: 12 * 60 * 60 * 1000//24 * 60 * 60 * 1000
