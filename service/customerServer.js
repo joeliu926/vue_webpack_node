@@ -10,11 +10,10 @@ var defualtCfg={
 };
 
 function clist(req, res, next){
-    console.log("----------------------");
     defualtCfg.method="GET";
     var opt=appUtil.extend({},defualtCfg);
-    opt.url+=`list?pageNo=${req.body.pageNo}&pageSize=${req.body.pageSize}&startDate=${req.body.startDate}&endDate=${req.body.endDate}&searchField=${req.body.searchField}&fieldValue=${req.body.fieldValue}`;
-   console.log(opt.url);
+    opt.url+=`list?pageNo=${req.body.pageNo}&pageSize=${req.body.pageSize}&startDate=${req.body.startDate}&endDate=${req.body.endDate}&fieldValue=${req.body.fieldValue}&searchField=${req.body.searchField}`;
+   //console.log(opt.url);
     opt.callBack=function(error, response, body){
         if(error)
         {
