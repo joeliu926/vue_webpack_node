@@ -14,7 +14,24 @@ function clist(req, res, next){
     var opt=appUtil.extend({},defualtCfg);
 
     opt.url+=`list?pageNo=${req.body.pageNo}&pageSize=${req.body.pageSize}&startDate=${req.body.startDate}&endDate=${req.body.endDate}&fieldValue=${encodeURI(req.body.fieldValue)}&searchField=${req.body.searchField}`;
-   console.log(opt.url);
+   //console.log(opt.url);
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            res.send(JSON.parse(body));
+        }
+    }
+    httpClient(opt);
+}
+function cdetail(req, res, next){
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+
+    opt.url+=`${req.body.id}`;
+    console.log(opt.url);
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -28,5 +45,6 @@ function clist(req, res, next){
 }
 
 module.exports = {
-    clist: clist
+    clist: clist,
+    cdetail:cdetail
 }

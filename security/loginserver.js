@@ -17,7 +17,7 @@ exports.loginEntry=function (req,res) {
      var opt=appUtil.extend({},defualtCfg);
     req.body.password = rsaconfig.decrypt(req.body.password);
     req.body.name = rsaconfig.decrypt(req.body.name);
-     opt.url+=`/SysUser/login`;
+     opt.url+=`/users/login`;
      opt.data={loginName:req.body.name,password:req.body.password};
      opt.callBack=function(error, response, body) {
 
