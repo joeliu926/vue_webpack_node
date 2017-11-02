@@ -12,6 +12,10 @@ function registor(app) {
         {
             root:"/customers",
             require: '../routes/customers.js'
+        },
+        {
+            root:"/consults",
+            require: '../routes/consults.js'
         }
     ];
 
