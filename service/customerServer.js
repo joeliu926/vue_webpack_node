@@ -2,7 +2,7 @@ var CONSTANT=require('../config/constant');
 var httpClient=require('../utils/httpClient');
 var appUtil=require('../utils/appUtils');
 var logingServer = require('../security/loginserver');
-
+const sessionAgent = require('../security/sessionAgent.js');
 
 var defualtCfg={
     url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/api/customer/',
@@ -12,9 +12,8 @@ var defualtCfg={
 function clist(req, res, next){
     defualtCfg.method="GET";
     var opt=appUtil.extend({},defualtCfg);
-
+    opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`list?pageNo=${req.body.pageNo}&pageSize=${req.body.pageSize}&startDate=${req.body.startDate}&endDate=${req.body.endDate}&fieldValue=${encodeURI(req.body.fieldValue)}&searchField=${req.body.searchField}`;
-   //console.log(opt.url);
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -29,9 +28,8 @@ function clist(req, res, next){
 function cdetail(req, res, next){
     defualtCfg.method="GET";
     var opt=appUtil.extend({},defualtCfg);
-
+    opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`${req.body.id}`;
-    console.log(opt.url);
     opt.callBack=function(error, response, body){
         if(error)
         {

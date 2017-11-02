@@ -12,16 +12,15 @@ var defualtCfg={
 };
 
 exports.loginEntry=function (req,res) {
-
      defualtCfg.method="POST";
      var opt=appUtil.extend({},defualtCfg);
-    req.body.password = rsaconfig.decrypt(req.body.password);
-    req.body.name = rsaconfig.decrypt(req.body.name);
+     req.body.password = rsaconfig.decrypt(req.body.password);
+     req.body.name = rsaconfig.decrypt(req.body.name);
      opt.url+=`/users/login`;
      opt.data={loginName:req.body.name,password:req.body.password};
+     opt.authorization =sessionAgent.getUserToken(req);
      opt.callBack=function(error, response, body) {
 
-         //console.log('body',body);
          if (error) {
              res.send({
                  code: CONSTANT.code.loginErr,
@@ -32,6 +31,7 @@ exports.loginEntry=function (req,res) {
              body=JSON.parse(body);
              if (body.code == 0) {
                  sessionAgent.setUserId(req, '0001');
+                 sessionAgent.setUserToken(req,response.headers['authorization']);
                  res.send({
                      code: 0,
                      msg: '登陆成功'
