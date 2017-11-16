@@ -20,7 +20,7 @@ router.all('/*', function (req, res, next) {
         res.sendStatus(200);
         return;
     }
-    
+
     if (CONSTANT.sessionWhiteList.indexOf(req.path.toLowerCase()) > -1) {
         next();
         return;

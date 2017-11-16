@@ -30,7 +30,8 @@ exports.loginEntry=function (req,res) {
          else {
              body=JSON.parse(body);
              if (body.code == 0) {
-                 sessionAgent.setUserId(req, '0001');
+                 sessionAgent.setUserId(req,body.data.loginName);
+                 sessionAgent.setUserInfo(req,body.data);
                  sessionAgent.setUserToken(req,response.headers['authorization']);
                  res.send({
                      code: 0,

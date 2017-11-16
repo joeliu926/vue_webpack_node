@@ -3,7 +3,7 @@
  */
 function registor(req, res, next){
     //console.log("allow origin register")
-    res.header("Access-Control-Allow-Origin", "http://localhost:8028"); //http://101.132.161.222:8028
+    res.header("Access-Control-Allow-Origin", "http://localhost:8028"); //http://101.132.161.222:8028 https://27478500.qcloud.la
 
     //res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Credentials", "true");
