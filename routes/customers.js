@@ -10,4 +10,13 @@ router.post('/detail', function(req, res, next) {
     customerServer.cdetail(req, res, next);
 });
 
+router.post('/filelist', function(req, res, next) {
+    customerServer.filelist(req, res, next);
+});
+
+router.post('/records', function(req, res, next) {
+    customerServer.records(req, res, next);
+});
+
+
 module.exports = router;

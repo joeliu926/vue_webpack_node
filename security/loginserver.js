@@ -21,6 +21,7 @@ exports.loginEntry=function (req,res) {
      opt.authorization =sessionAgent.getUserToken(req);
      opt.callBack=function(error, response, body) {
 
+         console.log('boxy',error);
          if (error) {
              res.send({
                  code: CONSTANT.code.loginErr,
@@ -53,6 +54,8 @@ exports.loginOutEntry=function (req,res) {
     //login code
     if(true){
         sessionAgent.deleteUserId(req);
+        sessionAgent.deleteUserInfo(req);
+        sessionAgent.deleteUserToken(req);
         res.send({
             code:0,
             msg:'登出成功'

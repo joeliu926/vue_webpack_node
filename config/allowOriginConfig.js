@@ -3,8 +3,7 @@
  */
 function registor(req, res, next){
     //console.log("allow origin register")
-    res.header("Access-Control-Allow-Origin", "http://localhost:8028"); //http://101.132.161.222:8028 https://27478500.qcloud.la
-
+    res.header("Access-Control-Allow-Origin", "https://27478500.qcloud.la"); //http://localhost:8028 https://27478500.qcloud.la
     //res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
@@ -13,6 +12,5 @@ function registor(req, res, next){
     res.header("X-Powered-By", '3.2.1');
     res.header("Content-Type", "application/json;charset=utf-8");
     next();
-
 }
 module.exports = registor;

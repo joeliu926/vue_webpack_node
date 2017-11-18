@@ -15,21 +15,16 @@ function getrecord(req, res, next){
 
     let startD=req.body.beginDate?req.body.beginDate:'';
     let endD = req.body.endDate?req.body.endDate:'';
-
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`consultStatis?loginName=${sessionAgent.getUserId(req)}&beginDate=${startD}&endDate=${endD}`;
-    console.log('opt',opt);
     opt.callBack=function(error, response, body){
         if(error)
         {
             res.send(error);
         }
         else {
-
-            console.log('body111111111111',body);
             body = JSON.parse(body);
-
-            res.send(body.data);
+            res.send(body);
         }
     }
     httpClient(opt);
