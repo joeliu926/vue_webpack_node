@@ -21,6 +21,7 @@
     "redis": "^2.8.0",
     "redis-connection-pool": "^1.6.1",
     "request": "^2.83.0",
-    "serve-favicon": "^2.4.5"
+    "serve-favicon": "^2.4.5",
+    "ws": "^3.3.2"
   }
 }
