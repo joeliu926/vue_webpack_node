@@ -19,7 +19,7 @@ redisUtil.fHmset("AAA",aData).then(result=>{
 
 
 var WebSocketServer = WebSocket.Server,
-    wss = new WebSocketServer({ port: 8181 });
+    wss = new WebSocketServer({ port: 8053 });
 var uuid = require('node-uuid');
 var clients = [];
 function wsSend(type, client_uuid, nickname, message) {
