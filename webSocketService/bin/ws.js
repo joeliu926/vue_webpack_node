@@ -2,6 +2,22 @@
  * Created by JoeLiu on 2017-11-24.
  */
 var WebSocket = require('ws');
+var redisUtil=require("../rutils/RedisUtil.js");
+
+
+/*var aData=["test keys 1", "test val 1", "test keys 2", "test val 2"];
+
+redisUtil.fHmset("AAA",aData).then(result=>{
+    console.log(result);
+    return result;
+}).then(result=>{
+        redisUtil.fHmget("AAA","test keys 1").then(res=>{
+            console.log("res=========>",res);
+        });
+});*/
+
+
+
 var WebSocketServer = WebSocket.Server,
     wss = new WebSocketServer({ port: 8181 });
 var uuid = require('node-uuid');
