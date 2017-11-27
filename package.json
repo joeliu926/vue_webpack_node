@@ -18,6 +18,7 @@
     "jade": "^1.11.0",
     "morgan": "^1.9.0",
     "node-rsa": "^0.4.2",
+    "node-uuid": "^1.4.8",
     "redis": "^2.8.0",
     "redis-connection-pool": "^1.6.1",
     "request": "^2.83.0",
