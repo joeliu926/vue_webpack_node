@@ -17,19 +17,22 @@ var path = require('path');
 var sLocalPort=process.argv[2];
 var sRemoteUrl=process.argv[3];
 var sRemotePort=process.argv[4];
+var sOriginConfig=process.argv[5];
 
 var constantFile = "./../config/constant.js";
+var aOriginConfig="./../config/allowOriginConfig.js";
 
 var constantPath=path.join(__dirname,constantFile);
+var aOriginConfigPath=path.join(__dirname,aOriginConfig);
+
 var constantData = fs.readFileSync(constantPath,'utf-8');
 constantData = constantData + "";
 constantData = constantData.replace(/remoteHost:('|')?.+('|")?,/g,function (word){
     return 'remoteHost:"'+sRemoteUrl+'",';
 }).replace(/remotePort:('|")?.+('|")?,/g,function (word){
     return 'remotePort:"'+sRemotePort+'",';
-
-
 });
+
 fs.writeFileSync(constantPath, constantData, function(err){
     if(err){
         console.log("error! " + file);
@@ -38,6 +41,26 @@ fs.writeFileSync(constantPath, constantData, function(err){
         console.log("CONSTANT.js success! ");
     }
 });
+
+//modify allowOriginConfig file
+var originConfigData = fs.readFileSync(aOriginConfigPath,'utf-8');
+originConfigData = originConfigData + "";
+
+//("Access-Control-Allow-Origin", "http://localhost:8028")
+originConfigData = originConfigData.replace(/\("Access-Control-Allow-Origin",(\s*\S*?)\)/g,function (word){
+    return '("Access-Control-Allow-Origin","'+sOriginConfig+'")';
+});
+
+fs.writeFileSync(aOriginConfigPath, originConfigData, function(err){
+    if(err){
+        console.log("error! " + file);
+        console.log(err);
+    }else{
+        console.log("allowOriginConfig.js success! ");
+    }
+});
+
+
 
 /////////////////////////////////////////////////////sLocalPort
 
