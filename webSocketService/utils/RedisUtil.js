@@ -6,7 +6,7 @@ var RDS_HOST = redisConfig.host||"127.0.0.1";
 var RDS_PWD = redisConfig.database||0;
 var RDS_OPTS = redisConfig.options||{};
 var client = redis.createClient(RDS_PORT,RDS_HOST,RDS_OPTS);
-
+var dbindex =redisConfig.dbIndex||0;
 
 client.on("error", function(error) {
     console.log(error);
@@ -18,8 +18,15 @@ client.on("error", function(error) {
  * @param dbindex db index
  * @returns {promise|*|e}
  */
-function fSet(key,value,dbindex){
+function fSet(key,value){
     var deferred = Q.defer();
+  /*  client.set(key,value, function(error, result) {
+        if(error) {
+            deferred.reject(error);
+        } else {
+            deferred.resolve(result);
+        }
+    });*/
     client.select(dbindex||"0", function(error){
         if(error) {
             deferred.reject(error);
@@ -41,7 +48,7 @@ function fSet(key,value,dbindex){
  * @param dbindex db index
  * @returns {promise|*|e}
  */
-function fGet(key,dbindex){
+function fGet(key){
     var deferred = Q.defer();
     client.select(dbindex||"0", function(error){
         if(error) {
@@ -51,6 +58,7 @@ function fGet(key,dbindex){
                 if(error) {
                     deferred.reject(error);
                 } else {
+       
                     deferred.resolve(result);
                 }
             });
@@ -64,7 +72,7 @@ function fGet(key,dbindex){
  * @param dbindex  db index
  * @returns {promise|*|e}
  */
-function fDel(key,dbindex){
+function fDel(key){
     var deferred = Q.defer();
     client.select(dbindex||"0", function(error){
         if(error) {
@@ -88,7 +96,7 @@ function fDel(key,dbindex){
  * @param dbindex
  * @returns {promise|*|e}
  */
-function fHmset(key,value,dbindex){
+function fHmset(key,value){
     var deferred = Q.defer();
     client.select(dbindex||"0", function(error){
         if(error) {
@@ -112,7 +120,7 @@ function fHmset(key,value,dbindex){
  * @param dbindex
  * @returns {promise|*|e}
  */
-function fHmget(key,field,dbindex){
+function fHmget(key,field){
     var deferred = Q.defer();
     client.select(dbindex||"0", function(error){
         if(error) {
@@ -135,7 +143,7 @@ function fHmget(key,field,dbindex){
  * @param dbindex
  * @returns {promise|*|e}
  */
-function fHgetall(key,dbindex){
+function fHgetall(key){
     var deferred = Q.defer();
     client.select(dbindex||"0", function(error){
         if(error) {
@@ -159,7 +167,7 @@ function fHgetall(key,dbindex){
  * @param dbindex
  * @returns {promise|*|e}
  */
-function fLpush(key,value,dbindex){
+function fLpush(key,value){
     var deferred = Q.defer();
 
     client.select(dbindex||'0', function(error){
@@ -180,7 +188,7 @@ function fLpush(key,value,dbindex){
  * @param dbindex db index
  * @returns {promise|*|e}
  */
-function fLrange(key,start,end,dbindex){
+function fLrange(key,start,end){
     var deferred = Q.defer();
 
     client.select(dbindex||'0', function(error){
@@ -199,6 +207,7 @@ function fLrange(key,start,end,dbindex){
     });
     return deferred.promise;
 }
+
 module.exports={
     fSet:fSet,
     fGet:fGet,
