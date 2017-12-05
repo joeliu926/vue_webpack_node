@@ -33,8 +33,6 @@ exports.loginEntry=function (req,res) {
                  sessionAgent.setUserId(req,body.data.loginName);
                  sessionAgent.setUserInfo(req,body.data);
                  sessionAgent.setUserToken(req,response.headers['authorization']);
-
-                 console.log('body.data',body.data);
                  res.send({
                      code: 0,
                      msg: '登陆成功',
