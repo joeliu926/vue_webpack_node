@@ -18,8 +18,8 @@ function registor(app) {
             require: '../routes/consults.js'
         },
         {
-            root:"/case",
-            require: '../routes/case.js'
+            root:"/case_base",
+            require: '../routes/case_base.js'
         }
     ];
 
