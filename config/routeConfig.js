@@ -25,6 +25,10 @@ function registor(app) {
             root:"/faceDiagnose",//faceDiagnose
             require: '../routes/faceDiagnose.js'
 
+        },{
+            root:"/product",
+            require: '../routes/product.js'
+
         }
     ];
 
