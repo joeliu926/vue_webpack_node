@@ -21,7 +21,7 @@ function searchList(req, res, next){
     opt.authorization =sessionAgent.getUserToken(req);
     let productName = req.body.productName;
     opt.url+=`searchList?loginName=${sessionAgent.getUserId(req)}&productName=${productName}`;
-
+    opt.url=encodeURI(opt.url);
     console.log(opt.url);
 
     opt.callBack=function(error, response, body){
