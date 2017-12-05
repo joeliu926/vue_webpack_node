@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "node  ./bin/www 8023  http://140.143.185.73 8082",
-    "test": "node ./bin/www 8023  http://140.143.185.73 8082",
+    "test": "node ./bin/www 8023  http://140.143.185.73 8083",
     "dist": "node ./bin/www 8023 http://140.143.185.52 8082",
     "_comment":"_LOCALPORT_,  _REMOTEURL_, _REMOTEPORT_"
   },
