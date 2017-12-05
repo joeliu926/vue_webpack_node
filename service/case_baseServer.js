@@ -17,6 +17,7 @@ function getdata(req, res, next){
   //  let endD = req.body.endDate?req.body.endDate:'';
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`product/list?loginName=${sessionAgent.getUserId(req)}`;
+    console.log("url",opt.url);
 //console.log(opt);
     opt.callBack=function(error, response, body){
         if(error)
