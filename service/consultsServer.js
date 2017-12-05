@@ -12,7 +12,6 @@ var defualtCfg={
 function getrecord(req, res, next){
     defualtCfg.method="GET";
     var opt=appUtil.extend({},defualtCfg);
-
     let startD=req.body.beginDate?req.body.beginDate:'';
     let endD = req.body.endDate?req.body.endDate:'';
     opt.authorization =sessionAgent.getUserToken(req);
