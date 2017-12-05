@@ -3,7 +3,7 @@
  */
 module.exports = {
     remoteHost:"http://140.143.185.73",  //http://101.132.161.222:8082
-    remotePort:"8082",
+    remotePort:"8083",
     cookie: {
         identityKey:"rky_mc_web_node",
         maxAge: 12 * 60 * 60 * 1000//24 * 60 * 60 * 1000

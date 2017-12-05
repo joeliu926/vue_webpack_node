@@ -16,6 +16,10 @@ function registor(app) {
         {
             root:"/consults",
             require: '../routes/consults.js'
+        },
+        {
+            root:"/case",
+            require: '../routes/case.js'
         }
     ];
 
