@@ -181,6 +181,10 @@ wss.on('connection', function(ws,req) {
         closeSocket();
     });
 
+    ws.on('error', function (req) {
+        closeSocket();
+    });
+
     /*process.on('SIGINT', function () {
         console.log("Closing things");
         closeSocket();
