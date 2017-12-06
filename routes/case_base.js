@@ -6,11 +6,10 @@ router.post('/getdata', function(req, res, next) {
     case_baseServer.getdata(req, res, next);
 });
 router.post('/caselibrary', function(req, res, next) {
-    case_baseServer.getList(req, res, next);
+    case_baseServer.caselibrary(req, res, next);
 });
-
 router.post('/casedetail', function(req, res, next) {
     console.log("------start get-------------");
-    case_baseServer.getrecord(req, res, next);
+    caseServer.getrecord(req, res, next);
 });
 module.exports = router;

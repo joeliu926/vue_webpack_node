@@ -12,13 +12,9 @@ var defualtCfg={
 function getdata(req, res, next){
     defualtCfg.method="GET";
     var opt=appUtil.extend({},defualtCfg);
-
-    //let startD=req.body.beginDate?req.body.beginDate:'';
-  //  let endD = req.body.endDate?req.body.endDate:'';
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`product/list?loginName=${sessionAgent.getUserId(req)}`;
-    console.log("url",opt.url);
-//console.log(opt);
+    //console.log("url",opt.url);
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -33,11 +29,9 @@ function getdata(req, res, next){
 }
 
 
-
 function getrecord(req, res, next){
     defualtCfg.method="GET";
     var opt=appUtil.extend({},defualtCfg);
-
     console.log('req.body.caseid',req.body.caseid);
     let caseid=req.body.caseid;
     console.log("caseid",caseid);
@@ -61,5 +55,4 @@ function getrecord(req, res, next){
 module.exports = {
     getdata: getdata,
     getrecord: getrecord,
-
 }
