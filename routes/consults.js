@@ -6,5 +6,10 @@ router.post('/getrecords', function(req, res, next) {
     consultServer.getrecord(req, res, next);
 });
 
+router.post('/getrecords_scene', function(req, res, next) {
+    consultServer.getrecord_scene(req, res, next);
+});
+
+
 
 module.exports = router;

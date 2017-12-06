@@ -14,6 +14,10 @@ router.post('/filelist', function(req, res, next) {
     customerServer.filelist(req, res, next);
 });
 
+router.post('/update', function(req, res, next) {
+    customerServer.update(req, res, next);
+});
+
 router.post('/records', function(req, res, next) {
     customerServer.records(req, res, next);
 });

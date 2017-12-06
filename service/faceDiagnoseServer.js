@@ -6,7 +6,7 @@ const sessionAgent = require('../security/sessionAgent.js');
 
 var defualtCfg={
     url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/api/faceDiagnose/',
-    contentType:'application/json;charset=UTF-8'
+    contentType:'application/json'
 };
 /**
  * 未面诊 api/faceDiagnose/notFaceDiagnoseList
@@ -76,12 +76,12 @@ function finished(req, res, next){
     defualtCfg.method="POST";
     var opt=appUtil.extend({},defualtCfg);
 
-    let flag = req.body.flag;
+    let flag=req.body.flag;
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`finished/${flag}`;
     opt.data=req.body;
-
     console.log(opt.url);
+
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -95,8 +95,39 @@ function finished(req, res, next){
     }
     httpClient(opt);
 }
+/**
+ * 获取客户资料  api/faceDiagnose/getCustomerData?appointmentId=48&customerId=4
+ * @param req
+ * @param res
+ * @param next
+ */
+function getCustomerData(req, res, next){
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+
+    opt.authorization =sessionAgent.getUserToken(req);
+    let appointmentId = req.body.appointmentId;
+    let customerId = req.body.customerId;
+    opt.url+=`getCustomerData?appointmentId=${appointmentId}&customerId=${customerId}`;
+    opt.data=req.body;
+
+    console.log(opt.url);
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            console.log("getCustomerData=====>",JSON.parse(body));
+            body = JSON.parse(body);
+            res.send(body);
+        }
+    }
+    httpClient(opt);
+}
 module.exports = {
     getNotFaceDiagnoseList: getNotFaceDiagnoseList,
     getEndList:getEndList,
-    finished:finished
+    finished:finished,
+    getCustomerData:getCustomerData
 }
