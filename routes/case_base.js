@@ -5,9 +5,12 @@ var case_baseServer =require('../service/case_baseServer');
 router.post('/getdata', function(req, res, next) {
     case_baseServer.getdata(req, res, next);
 });
+router.post('/caselibrary', function(req, res, next) {
+    case_baseServer.getList(req, res, next);
+});
 
 router.post('/casedetail', function(req, res, next) {
     console.log("------start get-------------");
-    caseServer.getrecord(req, res, next);
+    case_baseServer.getrecord(req, res, next);
 });
 module.exports = router;

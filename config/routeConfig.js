@@ -20,6 +20,10 @@ function registor(app) {
         {
             root:"/case_base",
             require: '../routes/case_base.js'
+        },
+        {
+            root:"/triage",
+            require: '../routes/triage.js'
         }
     ];
 
