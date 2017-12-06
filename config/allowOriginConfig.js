@@ -2,13 +2,10 @@
  * Created by JoeLiu on 2017-10-23.
  */
 function registor(req, res, next){
-<<<<<<< HEAD
+
     //console.log("allow origin register")
     res.header("Access-Control-Allow-Origin","http://localhost:8028"); //http://localhost:8028 https://27478500.qcloud.la
 
-=======
-    res.header("Access-Control-Allow-Origin","http://localhost:8028"); //http://localhost:8028 https://27478500.qcloud.la
->>>>>>> 1e567eb6c0bac5325e257ef483b2abc64043744f
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
