@@ -12,13 +12,27 @@ var defualtCfg={
 function getdata(req, res, next){
     defualtCfg.method="GET";
     var opt=appUtil.extend({},defualtCfg);
-
-    //let startD=req.body.beginDate?req.body.beginDate:'';
-  //  let endD = req.body.endDate?req.body.endDate:'';
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`product/list?loginName=${sessionAgent.getUserId(req)}`;
-    console.log("url",opt.url);
-//console.log(opt);
+    //console.log("url",opt.url);
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            body = JSON.parse(body);
+            res.send(body);
+        }
+    }
+    httpClient(opt);
+}
+function caselibrary(req, res, next){
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+    opt.url+=`caseHeader/list?loginName=${sessionAgent.getUserId(req)}&productCode=${req.body.id}`;
+    console.log("url------->",opt.url);
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -57,5 +71,6 @@ function getrecord(req, res, next){
 
 module.exports = {
     getdata: getdata,
-    getrecord: getrecord
+    getrecord: getrecord,
+    caselibrary:caselibrary
 }
