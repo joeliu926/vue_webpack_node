@@ -58,7 +58,7 @@ function updateSession(code,sid,cb) {
                 cb&&cb(codeMsg.success);
             });
         }else{
-            cb&&cb(codeMsg.redis_find_F);
+            cb&&cb(codeMsg.redis_findF);
         }
     });
 }

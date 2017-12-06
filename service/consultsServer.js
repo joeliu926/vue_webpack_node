@@ -29,6 +29,27 @@ function getrecord(req, res, next){
     httpClient(opt);
 }
 
+function getrecord_scene(req, res, next){
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+    let startD=req.body.beginDate?req.body.beginDate:'';
+    let endD = req.body.endDate?req.body.endDate:'';
+    opt.authorization =sessionAgent.getUserToken(req);
+    opt.url+=`faceDiagnoseStatis?loginName=${sessionAgent.getUserId(req)}&beginDate=${startD}&endDate=${endD}`;
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            body = JSON.parse(body);
+            res.send(body);
+        }
+    }
+    httpClient(opt);
+}
+
 module.exports = {
     getrecord: getrecord,
+    getrecord_scene:getrecord_scene
 }

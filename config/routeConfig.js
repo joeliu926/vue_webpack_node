@@ -18,17 +18,21 @@ function registor(app) {
             require: '../routes/consults.js'
         },
         {
-
             root:"/case_base",
             require: '../routes/case_base.js'
+        },
+        {
+            root:"/triage",
+            require: '../routes/triage.js'
         },{
             root:"/faceDiagnose",//faceDiagnose
             require: '../routes/faceDiagnose.js'
-
         },{
             root:"/product",
             require: '../routes/product.js'
-
+        },{
+            root:"/caseheader",
+            require: '../routes/caseHeader.js'
         }
     ];
 
