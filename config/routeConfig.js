@@ -21,12 +21,10 @@ function registor(app) {
 
             root:"/case_base",
             require: '../routes/case_base.js'
-<<<<<<< HEAD
         },
         {
             root:"/triage",
             require: '../routes/triage.js'
-=======
         },{
             root:"/faceDiagnose",//faceDiagnose
             require: '../routes/faceDiagnose.js'
@@ -34,8 +32,6 @@ function registor(app) {
         },{
             root:"/product",
             require: '../routes/product.js'
-
->>>>>>> 1e567eb6c0bac5325e257ef483b2abc64043744f
         }
     ];
 
