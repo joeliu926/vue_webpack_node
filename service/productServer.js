@@ -49,6 +49,7 @@ function list(req, res, next){
 
     opt.authorization =sessionAgent.getUserToken(req);
     let all = req.body.all;
+    //let productCode = req.body.productCode;
     opt.url+=`list?loginName=${sessionAgent.getUserId(req)}&all=${all}`;
     opt.url=encodeURI(opt.url);
     console.log(opt.url);
@@ -59,7 +60,7 @@ function list(req, res, next){
             res.send(error);
         }
         else {
-            console.log("searchList=====>",JSON.parse(body));
+            console.log("product=list====>",JSON.parse(body));
             body = JSON.parse(body);
             res.send(body);
         }
