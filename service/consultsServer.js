@@ -6,7 +6,7 @@ const sessionAgent = require('../security/sessionAgent.js');
 
 var defualtCfg={
     url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/api/customer/',
-    contentType:'application/json;charset=UTF-8'
+    contentType:'application/json'
 };
 
 function getrecord(req, res, next){

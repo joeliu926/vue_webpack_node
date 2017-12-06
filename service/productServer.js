@@ -6,7 +6,7 @@ const sessionAgent = require('../security/sessionAgent.js');
 
 var defualtCfg={
     url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/api/product/',
-    contentType:'application/json;charset=UTF-8'
+    contentType:'application/json'
 };
 /**
  * 模糊搜索获取下拉列表 api/product/searchList?loginName=15711367520&productName=开
