@@ -73,14 +73,20 @@ wss.on('connection', function(ws,req) {
             case 'bind':
                 service.updateSession(msgObj.content.code,msgObj.content.sid,function (result) {
                     if(result.code==0){
-                        ws.send(JSON.stringify(codeMsg.bind_S));
                         sendMessage('tv',msgObj.content.code,{
                             type:'bind_return',
                             content:codeMsg.success
-                        },function () {});
+                        },function (sendResult) {
+                            if(sendResult.code==0){
+                                ws.send(JSON.stringify(codeMsg.bind_S));
+                            }
+                            else{
+                                ws.send(JSON.stringify(sendResult));
+                            }
+                        });
                     }
                     else{
-                        ws.send(JSON.stringify(codeMsg.bind_F));
+                        ws.send(JSON.stringify(result));
                     }
                 });
                 break;
