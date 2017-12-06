@@ -5,6 +5,7 @@
 var CONSTANT=require('../config/constant');
 var httpClient=require('../utils/httpClient');
 var logingServer = require('../security/loginserver');
+const sessionAgent = require('../security/sessionAgent.js');
 //var appUtil=require('../utils/appUtils');
 var defualtCfg={
     url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/dashboard/platform',
@@ -12,10 +13,15 @@ var defualtCfg={
 };
 
 function userate(req, res, next){
-
     res.send({'aaa':'aaaa'});
-   
 }
+
+function getuserinfo(req, res, next){
+    //sessionAgent.getUserInfo(req);
+    res.send(sessionAgent.getUserInfo(req));
+}
+
+
 function usertimes(req,res,next){
 	 res.send({'usertimes':'this is user times aaaaa'});
 }
@@ -32,5 +38,6 @@ module.exports = {
     userate: userate,
     usertimes:usertimes,
     loginEntry:loginEntry,
-    loginOutEntry:loginOutEntry
+    loginOutEntry:loginOutEntry,
+    getuserinfo:getuserinfo
 }

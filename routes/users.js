@@ -10,6 +10,11 @@ router.post('/usertimes', function(req, res, next) {
   userServer.usertimes(req, res, next);
 });
 
+
+router.post('/getuserinfo', function(req, res, next) {
+  userServer.getuserinfo(req, res, next);
+});
+
 router.post('/login/entry', function(req, res, next) {
   userServer.loginEntry(req, res, next);
 });

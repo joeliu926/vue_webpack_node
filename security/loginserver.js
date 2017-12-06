@@ -20,7 +20,6 @@ exports.loginEntry=function (req,res) {
      opt.data={loginName:req.body.name,password:req.body.password};
      opt.authorization =sessionAgent.getUserToken(req);
      opt.callBack=function(error, response, body) {
-
          console.log('boxy',error);
          if (error) {
              res.send({
@@ -36,13 +35,15 @@ exports.loginEntry=function (req,res) {
                  sessionAgent.setUserToken(req,response.headers['authorization']);
                  res.send({
                      code: 0,
-                     msg: '登陆成功'
+                     msg: '登陆成功',
+                     data:body.data
                  });
              }
              else{
                  res.send({
                      code: CONSTANT.code.loginErr,
-                     msg: 'login failure'
+                     msg: 'login failure',
+                     data:{}
                  });
              }
          }
