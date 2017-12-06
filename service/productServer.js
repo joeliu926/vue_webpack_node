@@ -37,7 +37,36 @@ function searchList(req, res, next){
     }
     httpClient(opt);
 }
+/**
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
+function list(req, res, next){
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
 
+    opt.authorization =sessionAgent.getUserToken(req);
+    let all = req.body.all;
+    opt.url+=`list?loginName=${sessionAgent.getUserId(req)}&all=${all}`;
+    opt.url=encodeURI(opt.url);
+    console.log(opt.url);
+
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            console.log("searchList=====>",JSON.parse(body));
+            body = JSON.parse(body);
+            res.send(body);
+        }
+    }
+    httpClient(opt);
+}
 module.exports = {
-    searchList:searchList
+    searchList:searchList,
+    list:list
 }

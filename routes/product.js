@@ -5,6 +5,9 @@ var productServer =require('../service/productServer');
 router.post('/searchList', function(req, res, next) {
     productServer.searchList(req, res, next);
 });
+router.post('/list', function(req, res, next) {
+    productServer.list(req, res, next);
+});
 
 
 module.exports = router;
