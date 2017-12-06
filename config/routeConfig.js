@@ -31,6 +31,9 @@ function registor(app) {
         },{
             root:"/product",
             require: '../routes/product.js'
+        },{
+            root:"/caseheader",
+            require: '../routes/caseHeader.js'
         }
     ];
 
