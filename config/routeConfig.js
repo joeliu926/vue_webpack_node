@@ -24,7 +24,6 @@ function registor(app) {
         {
             root:"/triage",
             require: '../routes/triage.js'
-
         },{
             root:"/faceDiagnose",//faceDiagnose
             require: '../routes/faceDiagnose.js'
