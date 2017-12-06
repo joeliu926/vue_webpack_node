@@ -28,6 +28,25 @@ function getdata(req, res, next){
     httpClient(opt);
 }
 
+function caselibrary(req, res, next){
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+    opt.url+=`caseHeader/list?loginName=${sessionAgent.getUserId(req)}&productCode=${req.body.id}`;
+    console.log("url------->",opt.url);
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            body = JSON.parse(body);
+            res.send(body);
+        }
+    }
+    httpClient(opt);
+}
+
 
 function getrecord(req, res, next){
     defualtCfg.method="GET";
@@ -82,5 +101,6 @@ function setFacePhone(req, res, next){
 module.exports = {
     getdata: getdata,
     getrecord: getrecord,
-    setFacePhone:setFacePhone
+    setFacePhone:setFacePhone,
+    caselibrary:caselibrary
 }
