@@ -45,7 +45,9 @@ function getlist(req, res, next){
     let status=req.body.status;
     console.log("pageNo",pageNo);
     opt.authorization =sessionAgent.getUserToken(req);
-    opt.url+=`triage/list?pageNo=1&pageSize=10&repage=3&status=1`;//?pageNo=${pageNo}&pageSize=${pageSize}&repage=${repage}&status=${status}
+    opt.url+=`triage/list?pageNo=${pageNo}&pageSize=${pageSize}&repage=${repage}&status=${status}`;
+    //?pageNo=1&pageSize=10&repage=3&status=1
+    //?pageNo=${pageNo}&pageSize=${pageSize}&repage=${repage}&status=${status}
     console.log("======",opt);
     opt.callBack=function(error, response, body){
         if(error)
