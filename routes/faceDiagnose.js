@@ -11,8 +11,12 @@ router.post('/getendlist', function(req, res, next) {
 router.post('/finished', function(req, res, next) { //
     faceDiagnoseServer.finished(req, res, next);
 });
-router.post('/getCustomerData', function(req, res, next) { //getCustomerData
+router.post('/getCustomerData', function(req, res, next) { //
     faceDiagnoseServer.getCustomerData(req, res, next);
+});
+
+router.post('/newFaceDiagnose', function(req, res, next) { //newFaceDiagnose
+    faceDiagnoseServer.newFaceDiagnose(req, res, next);
 });
 
 module.exports = router;
