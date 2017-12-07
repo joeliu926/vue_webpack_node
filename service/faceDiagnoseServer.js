@@ -125,9 +125,40 @@ function getCustomerData(req, res, next){
     }
     httpClient(opt);
 }
+/**
+ * 更新客户资料
+ * @param req
+ * @param res
+ * @param next
+ */
+function newFaceDiagnose(req, res, next){
+    defualtCfg.method="POST";
+    var opt=appUtil.extend({},defualtCfg);
+
+    opt.authorization =sessionAgent.getUserToken(req);
+    let appointmentId = req.body.appointmentId;
+    let customerId = req.body.customerId;
+    opt.url+=`newFaceDiagnose`;
+    opt.data=req.body;
+    opt.data.loginName=sessionAgent.getUserId(req);
+    console.log(opt.url);
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            console.log("newFaceDiagnose=====>",JSON.parse(body));
+            body = JSON.parse(body);
+            res.send(body);
+        }
+    }
+    httpClient(opt);
+}
 module.exports = {
     getNotFaceDiagnoseList: getNotFaceDiagnoseList,
     getEndList:getEndList,
     finished:finished,
-    getCustomerData:getCustomerData
+    getCustomerData:getCustomerData,
+    newFaceDiagnose:newFaceDiagnose
 }
