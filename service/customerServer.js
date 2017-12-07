@@ -123,10 +123,89 @@ function records(req, res, next){
 }
 
 
+/**
+ * 获取客户咨询记录
+ * @param req
+ * @param res
+ * @param next
+ */
+function culelist(req, res, next){
+    defualtCfg.method="POST";
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+    opt.url+=`clue/list`;
+    opt.data={
+        status:req.body.status,
+        customerId:req.body.customerId,
+        userId: sessionAgent.getUserId(req)
+    };
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            res.send(JSON.parse(body));
+        }
+    }
+    httpClient(opt);
+}
+
+/**
+ * 网络咨询记录
+ * @param req
+ * @param res
+ * @param next
+ */
+function culewebdetail(req, res, next){
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+    opt.url+=`consultation/track?unionId=${req.body.unionId}&consultingId=${req.body.consultingId}`;
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            res.send(JSON.parse(body));
+        }
+    }
+    httpClient(opt);
+}
+
+/**
+ * 获取客户咨询记录
+ * @param req
+ * @param res
+ * @param next
+ */
+function culescenedetail(req, res, next){
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+    opt.url+=`consultation/getRecords/${req.body.id}`;
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            res.send(JSON.parse(body));
+        }
+    }
+    httpClient(opt);
+}
+
+
+
 module.exports = {
     clist: clist,
     cdetail:cdetail,
     filelist:filelist,
     records:records,
-    update:update
+    update:update,
+    culelist:culelist,
+    culewebdetail:culewebdetail,
+    culescenedetail:culescenedetail
 }

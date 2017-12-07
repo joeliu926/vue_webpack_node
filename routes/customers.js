@@ -22,5 +22,16 @@ router.post('/records', function(req, res, next) {
     customerServer.records(req, res, next);
 });
 
+router.post('/culelist', function(req, res, next) {
+    customerServer.culelist(req, res, next);
+});
+
+router.post('/culewebdetail', function(req, res, next) {
+    customerServer.culewebdetail(req, res, next);
+});
+
+router.post('/culescenedetail', function(req, res, next) {
+    customerServer.culescenedetail(req, res, next);
+});
 
 module.exports = router;
