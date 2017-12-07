@@ -9,7 +9,7 @@ const sessionAgent = require('../security/sessionAgent.js');
 
 var defualtCfg={
     url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/api/',
-    contentType:'application/json;charset=UTF-8'
+    contentType:'application/json'
 };
 
 // function getdata(req, res, next){

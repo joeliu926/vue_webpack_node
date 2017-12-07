@@ -5,6 +5,9 @@ var caseHeaderServer =require('../service/caseHeaderServer');
 router.post('/doctorlist', function(req, res, next) {
     caseHeaderServer.doctorList(req, res, next);
 });
+router.post('/list', function(req, res, next) {
+    caseHeaderServer.list(req, res, next);
+});
 
 
 

@@ -6,7 +6,7 @@ const sessionAgent = require('../security/sessionAgent.js');
 
 var defualtCfg={
     url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/api/',
-    contentType:'application/json;charset=UTF-8'
+    contentType:'application/json'
 };
 
 function getdata(req, res, next){
@@ -28,6 +28,25 @@ function getdata(req, res, next){
     httpClient(opt);
 }
 
+function caselibrary(req, res, next){
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+    opt.url+=`caseHeader/list?loginName=${sessionAgent.getUserId(req)}&productCode=${req.body.id}`;
+    console.log("url------->",opt.url);
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            body = JSON.parse(body);
+            res.send(body);
+        }
+    }
+    httpClient(opt);
+}
+
 
 function getrecord(req, res, next){
     defualtCfg.method="GET";
@@ -36,7 +55,7 @@ function getrecord(req, res, next){
     let caseid=req.body.caseid;
     console.log("caseid",caseid);
     opt.authorization =sessionAgent.getUserToken(req);
-    opt.url+=`caseHeader/5`;//${caseid}
+    opt.url+=`caseHeader/${caseid}`;//${caseid}
     console.log("======",opt);
     opt.callBack=function(error, response, body){
         if(error)
@@ -52,7 +71,36 @@ function getrecord(req, res, next){
     httpClient(opt);
 }
 
+
+function setFacePhone(req, res, next){
+    defualtCfg.method="POST";
+    var opt=appUtil.extend({},defualtCfg);
+    let caseid=req.body.caseid;
+    opt.authorization =sessionAgent.getUserToken(req);
+    opt.url+=`caseHeader/setCover`;
+    opt.data={
+            "id":caseid,
+            "beforePic":req.body.beforePic,
+            "afterPic":req.body.afterPic
+    }
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            body = JSON.parse(body);
+            res.send(body);
+        }
+    }
+    httpClient(opt);
+}
+
+
+
 module.exports = {
     getdata: getdata,
     getrecord: getrecord,
+    setFacePhone:setFacePhone,
+    caselibrary:caselibrary
 }
