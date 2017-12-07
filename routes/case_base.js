@@ -12,9 +12,7 @@ router.post('/casedetail', function(req, res, next) {
     console.log("------start get-------------");
     case_baseServer.getrecord(req, res, next);
 });
-
 router.post('/setfacephone', function(req, res, next) {
     case_baseServer.setFacePhone(req, res, next);
 });
-
 module.exports = router;
