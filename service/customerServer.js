@@ -137,7 +137,7 @@ function culelist(req, res, next){
     opt.data={
         status:req.body.status,
         customerId:req.body.customerId,
-        userId: sessionAgent.getUserId(req)
+        loginName: sessionAgent.getUserId(req)
     };
     opt.callBack=function(error, response, body){
         if(error)
