@@ -175,7 +175,7 @@ function culewebdetail(req, res, next){
 }
 
 /**
- * 获取客户咨询记录
+ * 现场咨询记录
  * @param req
  * @param res
  * @param next
@@ -184,7 +184,7 @@ function culescenedetail(req, res, next){
     defualtCfg.method="GET";
     var opt=appUtil.extend({},defualtCfg);
     opt.authorization =sessionAgent.getUserToken(req);
-    opt.url+=`consultation/track?unionId=${req.body.unionId}&consultingId=${req.body.consultingId}`;
+    opt.url+=`onsiteconsultation/track/${req.body.clueId}/${req.body.phase}`;
     opt.callBack=function(error, response, body){
         if(error)
         {
