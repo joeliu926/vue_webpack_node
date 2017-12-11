@@ -184,7 +184,7 @@ function culescenedetail(req, res, next){
     defualtCfg.method="GET";
     var opt=appUtil.extend({},defualtCfg);
     opt.authorization =sessionAgent.getUserToken(req);
-    opt.url+=`onsiteconsultation/track/${req.body.clueId}/${req.body.phase}`;
+    opt.url+=`clue/onsiteconsultation/track/${req.body.clueId}/${req.body.phase}`;
     opt.callBack=function(error, response, body){
         if(error)
         {
