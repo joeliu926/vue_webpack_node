@@ -36,6 +36,9 @@ function registor(app) {
         },{
             root:"/source",
             require: '../routes/source.js'
+        },{
+            root:"/event",
+            require: '../routes/event.js'
         }
     ];
 
