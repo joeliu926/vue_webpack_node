@@ -33,7 +33,7 @@ function caselibrary(req, res, next){
     var opt=appUtil.extend({},defualtCfg);
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`caseHeader/list?loginName=${sessionAgent.getUserId(req)}&productCode=${req.body.id}`;
-    console.log("url------->",opt.url);
+    //console.log("url------->",opt.url);
     opt.callBack=function(error, response, body){
         if(error)
         {
