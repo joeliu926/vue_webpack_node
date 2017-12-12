@@ -18,5 +18,7 @@ router.post('/getCustomerData', function(req, res, next) { //
 router.post('/newFaceDiagnose', function(req, res, next) { //newFaceDiagnose
     faceDiagnoseServer.newFaceDiagnose(req, res, next);
 });
-
+router.post('/getSingleDiagnose', function(req, res, next) { //getSingleDiagnose
+    faceDiagnoseServer.getSingleDiagnose(req, res, next);
+});
 module.exports = router;
