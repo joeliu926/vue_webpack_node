@@ -49,12 +49,17 @@ function fSet(key,value){
  * @returns {promise|*|e}
  */
 function fGet(key){
+    console.log('uuid111baba5');
     var deferred = Q.defer();
+    console.log('uuid1009');
     client.select(dbindex||"0", function(error){
+        console.log('uuid11111155555');
         if(error) {
+            console.log('eeeee',result);
             deferred.reject(error);
         } else {
             client.get(key, function(error, result) {
+                console.log('uuid11122222',result);
                 if(error) {
                     deferred.reject(error);
                 } else {
