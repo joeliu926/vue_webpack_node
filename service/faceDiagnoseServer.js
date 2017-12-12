@@ -155,10 +155,42 @@ function newFaceDiagnose(req, res, next){
     }
     httpClient(opt);
 }
+
+/**
+ * 获取单条未面诊记录
+ * @param req
+ * @param res
+ * @param next
+ */
+function getSingleDiagnose(req, res, next){
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+
+    opt.authorization =sessionAgent.getUserToken(req);
+    let faceId = req.body.faceId;
+    opt.url+=`${faceId}`;
+
+    console.log(opt.url);
+
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            console.log("getSingleDiagnose=====>",JSON.parse(body));
+            body = JSON.parse(body);
+            res.send(body);
+        }
+    }
+    httpClient(opt);
+}
+
 module.exports = {
     getNotFaceDiagnoseList: getNotFaceDiagnoseList,
     getEndList:getEndList,
     finished:finished,
     getCustomerData:getCustomerData,
-    newFaceDiagnose:newFaceDiagnose
+    newFaceDiagnose:newFaceDiagnose,
+    getSingleDiagnose:getSingleDiagnose
 }
