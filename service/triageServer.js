@@ -41,14 +41,16 @@ function getlist(req, res, next){
     console.log('req.body.pageNo',req.body.pageNo);
     let pageNo=req.body.pageNo;
     let pageSize=req.body.pageSize;
-    let repage=req.body.repage;
     let status=req.body.status;
+    let startDate=req.body.startDate;
+    let endDate=req.body.endDate;
+
     console.log("pageNo",pageNo);
     opt.authorization =sessionAgent.getUserToken(req);
-    opt.url+=`triage/list?pageNo=${pageNo}&pageSize=${pageSize}&repage=${repage}&status=${status}`;
+    opt.url+=`triage/list?pageNo=${pageNo}&pageSize=${pageSize}&status=${status}&startDate=${startDate}&endDate=${endDate}`;
     //?pageNo=1&pageSize=10&repage=3&status=1
     //?pageNo=${pageNo}&pageSize=${pageSize}&repage=${repage}&status=${status}
-    console.log("======",opt);
+    console.log("======",opt.url);
     opt.callBack=function(error, response, body){
         if(error)
         {
