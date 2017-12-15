@@ -22,7 +22,9 @@ function socketVerify(info) {
 wss.on('connection', function(ws,req) {
     let uuid = service.getUUID();
     let clientCode =0;
-    if(req.url=='/tv'){
+
+    console.log('req.url',req.url);
+    if(req.url.indexOf('/tv')>-1){
         //return code and id after created connection from tv
         service.getCode(uuid,function (result) {
             serverClients.push({id:uuid,ws:ws});
@@ -37,7 +39,7 @@ wss.on('connection', function(ws,req) {
                 }
              ));
         });
-    }else if(req.url=='/console'){
+    }else if(req.url.indexOf('/console') > -1){
         //return id after created connection from console
         ws.send(JSON.stringify(
             {

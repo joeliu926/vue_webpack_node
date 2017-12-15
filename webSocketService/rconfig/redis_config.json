@@ -5,6 +5,6 @@
   "max_clients": 20,
   "perform_checks": false,
   "database": 0,
-  "options": {},
+  "options": {"auth_pass":"mc171704hurry"},
   "dbIndex":0
 }
