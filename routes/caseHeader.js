@@ -8,6 +8,9 @@ router.post('/doctorlist', function(req, res, next) {
 router.post('/list', function(req, res, next) {
     caseHeaderServer.list(req, res, next);
 });
+// router.post('/caseHeader/setCover', function(req, res, next) {
+//     caseHeaderServer.list(req, res, next);
+// });
 
 
 
