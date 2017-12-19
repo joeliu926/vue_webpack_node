@@ -1,6 +1,7 @@
 var CONSTANT=require('../config/constant');
 var httpClient=require('../utils/httpClient');
 var appUtil=require('../utils/appUtils');
+var loger=require('../utils/loger');
 var logingServer = require('../security/loginserver');
 const sessionAgent = require('../security/sessionAgent.js');
 
@@ -21,15 +22,16 @@ function getNotFaceDiagnoseList(req, res, next){
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`notFaceDiagnoseList?loginName=${sessionAgent.getUserId(req)}`;
 
-    console.log(opt.url);
+    loger.info(opt.url);
 
     opt.callBack=function(error, response, body){
         if(error)
         {
+            loger.error(error);
             res.send(error);
         }
         else {
-            console.log("getNotFaceDiagnoseList=====>",JSON.parse(body));
+            loger.info("notFaceDiagnoseList-------->",body);
             body = JSON.parse(body);
             res.send(body);
         }
@@ -51,7 +53,7 @@ function getEndList(req, res, next){
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`endList?loginName=${sessionAgent.getUserId(req)}&pageNo=${pageNo}&pageSize=${pageSize}`;
 
-    console.log(opt.url);
+    loger.info(opt.url);
 
     opt.callBack=function(error, response, body){
         if(error)
@@ -80,7 +82,7 @@ function finished(req, res, next){
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`finished/${flag}`;
     opt.data=req.body;
-    console.log(opt.url);
+    loger.info(opt.url);
 
     opt.callBack=function(error, response, body){
         if(error)
@@ -111,7 +113,7 @@ function getCustomerData(req, res, next){
     opt.url+=`getCustomerData?appointmentId=${appointmentId}&customerId=${customerId}`;
     opt.data=req.body;
 
-    console.log(opt.url);
+    loger.info(opt.url);
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -141,7 +143,7 @@ function newFaceDiagnose(req, res, next){
     opt.url+=`newFaceDiagnose`;
     opt.data=req.body;
     opt.data.loginName=sessionAgent.getUserId(req);
-    console.log(opt.url);
+    loger.info(opt.url);
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -170,7 +172,7 @@ function getSingleDiagnose(req, res, next){
     let faceId = req.body.faceId;
     opt.url+=`${faceId}`;
 
-    console.log(opt.url);
+    loger.info(opt.url);
 
     opt.callBack=function(error, response, body){
         if(error)
