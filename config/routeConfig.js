@@ -42,6 +42,12 @@ function registor(app) {
         },{
             root:"/clue",
             require: '../routes/clue.js'
+        },{
+            root:"/clinic",
+            require: '../routes/clinic.js'
+        },{
+            root:"/doctor",
+            require: '../routes/doctor.js'
         }
     ];
 
