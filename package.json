@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev_ws": "node ./webSocketService/bin/ws.js 8053",
-    "dev_web": "node ./bin/www 8023 http://140.143.185.73 8083 http://localhost:8028",
+   "dev_web": "node ./bin/www 8023 http://140.143.185.73 8083 http://localhost:8028",
     "dev": "concurrently \"npm run dev_ws\" \"npm run dev_web\"",
     "test_ws": "node ./webSocketService/bin/ws.js 8054",
     "test_web": "node ./bin/www 8024 http://140.143.185.73 8083 http://123.207.213.50:8001",

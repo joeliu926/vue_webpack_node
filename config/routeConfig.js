@@ -47,12 +47,16 @@ function registor(app) {
             require: '../routes/admin/user_role.js'
 
         },{
-            root:"/admin/clinic",
-            require: '../routes/admin/clinic.js'
+            root:"/clinic",
+            require: '../routes/clinic.js'
         }
         ,{
-            root:"/admin/doctor",
-            require: '../routes/admin/doctor.js'
+            root:"/doctor",
+            require: '../routes/doctor.js'
+        },
+        {
+            root:"/admin/backcase",
+            require: '../routes/admin/backcase.js'
         }
     ];
 
