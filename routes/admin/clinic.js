@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var router = express.Router();
-var clinicServer =require('../service/clinicServer');
+var clinicServer =require('../../service/admin/clinicServer');
 /* GET users listing. */
 router.post('/create', function(req, res, next) {
     clinicServer.create(req, res, next);

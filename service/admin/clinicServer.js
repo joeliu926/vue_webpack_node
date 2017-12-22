@@ -1,13 +1,15 @@
 /**
  * Created by admin on 2017-12-21.
  */
-var CONSTANT=require('../config/constant');
-var httpClient=require('../utils/httpClient');
-var appUtil=require('../utils/appUtils');
-var loger=require('../utils/loger');
-var logingServer = require('../security/loginserver');
-const sessionAgent = require('../security/sessionAgent.js');
+var CONSTANT=require('../../config/constant');
+var httpClient=require('../../utils/httpClient');
+var appUtil=require('../../utils/appUtils');
+var loger=require('../../utils/loger');
+var logingServer = require('../../security/loginserver');
+const sessionAgent = require('../../security/sessionAgent.js');
 
+//CONSTANT.remoteHost="http://172.16.6.85";
+//CONSTANT.remotePort="8089";
 var defualtCfg={
     url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/api/clinic/',
     contentType:'application/json'
@@ -23,13 +25,17 @@ function create(req, res, next){
     var opt=appUtil.extend({},defualtCfg);
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`create`;
-    opt.data=req.body;
+    let pData=req.body.pData;
+    let oData=JSON.parse(pData)||{};
+    oData.loginName=sessionAgent.getUserId(req);
+    opt.data=oData;
+    loger.info("create---oData-----",oData);
     //opt.url=encodeURI(opt.url);
     loger.info(opt.url);
     opt.callBack=function(error, response, body){
         if(error)
         {
-            loger.info("create---erroe-----",error);
+            loger.error("create---erroe-----",error);
             res.send(error);
         }
         else {
@@ -51,11 +57,12 @@ function list(req, res, next){
     var opt=appUtil.extend({},defualtCfg);
 
     opt.authorization =sessionAgent.getUserToken(req);
-    let pageNo = req.body.pageNo;
-    let pageSize = req.body.pageSize;
-    let parentTenantId = req.body.parentTenantId;
-    let clinicId = req.body.clinicId;
-    opt.url+=`list?pageNo=${pageNo}&pageSize=${pageSize}&parentTenantId=${parentTenantId}&clinicId=${clinicId}`;
+    let pageNo = req.body.pageNo||"1";
+    let pageSize = req.body.pageSize||"1";
+    let parentTenantId = req.body.parentTenantId||"";
+    let clinicId = req.body.clinicId||"";
+    let loginName=sessionAgent.getUserId(req);
+    opt.url+=`pagelist?pageNo=${pageNo}&pageSize=${pageSize}&parentTenantId=${parentTenantId}&clinicId=${clinicId}&loginName=${loginName}`;
     opt.url=encodeURI(opt.url);
 
     loger.info(opt.url);
@@ -63,7 +70,7 @@ function list(req, res, next){
     opt.callBack=function(error, response, body){
         if(error)
         {
-            loger.info("clinic---list-----",error);
+            loger.error("clinic---list-----",error);
             res.send(error);
         }
         else {
@@ -93,7 +100,7 @@ function get(req, res, next){
     opt.callBack=function(error, response, body){
         if(error)
         {
-            loger.info("clinic---get-----",error);
+            loger.error("clinic---get-----",error);
             res.send(error);
         }
         else {
@@ -116,14 +123,18 @@ function update(req, res, next){
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`update`;
 
-    opt.data=req.body;
-    opt.url=encodeURI(opt.url);
-    loger.info(opt.url);
+    let pData=req.body.pData;
+    let oData=JSON.parse(pData)||{};
+    oData.loginName=sessionAgent.getUserId(req);
+    opt.data=oData;
 
+    //opt.data=req.body;
+    //opt.url=encodeURI(opt.url);
+    loger.info(opt.url,oData);
     opt.callBack=function(error, response, body){
         if(error)
         {
-            loger.info("clinic---update------",error);
+            loger.error("clinic---update------",error);
             res.send(error);
         }
         else {
@@ -153,7 +164,7 @@ function deleteC(req, res, next){
     opt.callBack=function(error, response, body){
         if(error)
         {
-            loger.info("clinic---delete-----",error);
+            loger.error("clinic---delete-----",error);
             res.send(error);
         }
         else {

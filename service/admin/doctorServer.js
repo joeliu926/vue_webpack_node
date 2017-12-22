@@ -1,12 +1,12 @@
 /**
  * Created by admin on 2017-12-21.
  */
-var CONSTANT=require('../config/constant');
-var httpClient=require('../utils/httpClient');
-var loger=require('../utils/loger');
-var appUtil=require('../utils/appUtils');
-var logingServer = require('../security/loginserver');
-const sessionAgent = require('../security/sessionAgent.js');
+var CONSTANT=require('../../config/constant');
+var httpClient=require('../../utils/httpClient');
+var loger=require('../../utils/loger');
+var appUtil=require('../../utils/appUtils');
+var logingServer = require('../../security/loginserver');
+const sessionAgent = require('../../security/sessionAgent.js');
 
 var defualtCfg={
     url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/api/doctor/',
