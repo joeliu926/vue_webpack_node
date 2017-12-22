@@ -42,6 +42,9 @@ function registor(app) {
         },{
             root:"/clue",
             require: '../routes/clue.js'
+        },{
+            root:"/admin/userrole",
+            require: '../routes/admin/user_role.js'
         }
     ];
 
