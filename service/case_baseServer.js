@@ -90,6 +90,7 @@ function setFacePhone(req, res, next){
         }
         else {
             body = JSON.parse(body);
+            console.log(body);
             res.send(body);
         }
     }
