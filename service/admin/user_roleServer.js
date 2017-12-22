@@ -14,6 +14,9 @@ var defualtCfg={
 
 function rolelist(req, res, next){
     defualtCfg.method="GET";
+
+    console.log('------------',sessionAgent.getUserInfo(req));
+    
     var opt=appUtil.extend({},defualtCfg);
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`roles/list?tenantId=${req.body.tenantId}&userId=${req.body.userId}`;
