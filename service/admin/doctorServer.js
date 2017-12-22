@@ -25,11 +25,11 @@ function create(req, res, next){
     var opt=appUtil.extend({},defualtCfg);
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`create`;
-    let pData=req.body.pData;
-    let oData=JSON.parse(pData)||{};
-    oData.loginName=sessionAgent.getUserId(req);
-    opt.data=oData;
-    loger.info("create---oData-----",oData);
+/*    let pData=req.body.pData;
+    let oData=JSON.parse(pData)||{};*/
+    req.body.loginName=sessionAgent.getUserId(req);
+    opt.data=req.body;
+    loger.info("create---oData-----",req.bod);
     //opt.url=encodeURI(opt.url);
     loger.info(opt.url);
     opt.callBack=function(error, response, body){
@@ -62,7 +62,7 @@ function list(req, res, next){
     let parentTenantId = req.body.parentTenantId||"";
     let clinicId = req.body.clinicId||"";
     let loginName=sessionAgent.getUserId(req);
-    opt.url+=`pagelist?pageNo=${pageNo}&pageSize=${pageSize}&parentTenantId=${parentTenantId}&clinicId=${clinicId}&loginName=${loginName}`;
+    opt.url+=`pagelist?pageNo=${pageNo}&pageSize=${pageSize}&loginName=${loginName}`;
     opt.url=encodeURI(opt.url);
 
     loger.info(opt.url);
