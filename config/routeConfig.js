@@ -45,11 +45,14 @@ function registor(app) {
         },{
             root:"/admin/userrole",
             require: '../routes/admin/user_role.js'
-            root:"/clinic",
-            require: '../routes/clinic.js'
+
         },{
-            root:"/doctor",
-            require: '../routes/doctor.js'
+            root:"/admin/clinic",
+            require: '../routes/admin/clinic.js'
+        }
+        ,{
+            root:"/admin/doctor",
+            require: '../routes/admin/doctor.js'
         }
     ];
 
