@@ -29,9 +29,6 @@ function create(req, res, next){
     let oData=JSON.parse(pData)||{};*/
     req.body.loginName=sessionAgent.getUserId(req);
     opt.data=req.body;
-    loger.info("create---oData-----",req.bod);
-    //opt.url=encodeURI(opt.url);
-    loger.info(opt.url);
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -93,7 +90,7 @@ function get(req, res, next){
 
     opt.authorization =sessionAgent.getUserToken(req);
     let id = req.body.id;
-    opt.url+=`get/${id}`;
+    opt.url+=`get?id=${id}`;
     opt.url=encodeURI(opt.url);
     loger.info(opt.url);
 
@@ -123,14 +120,12 @@ function update(req, res, next){
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`update`;
 
-    let pData=req.body.pData;
-    let oData=JSON.parse(pData)||{};
-    oData.loginName=sessionAgent.getUserId(req);
-    opt.data=oData;
+     req.body.loginName=sessionAgent.getUserId(req);
+    opt.data=req.body;
 
     //opt.data=req.body;
     //opt.url=encodeURI(opt.url);
-    loger.info(opt.url,oData);
+    //loger.info(opt.url,opt.data);
     opt.callBack=function(error, response, body){
         if(error)
         {

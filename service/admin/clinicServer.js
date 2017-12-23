@@ -131,7 +131,7 @@ function update(req, res, next){
 
     //opt.data=req.body;
     //opt.url=encodeURI(opt.url);
-    loger.info(opt.url,oData);
+    //loger.info(opt.url,oData);
     opt.callBack=function(error, response, body){
         if(error)
         {
