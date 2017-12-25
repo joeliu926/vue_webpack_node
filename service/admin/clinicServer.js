@@ -7,6 +7,7 @@ var appUtil=require('../../utils/appUtils');
 var loger=require('../../utils/loger');
 var logingServer = require('../../security/loginserver');
 const sessionAgent = require('../../security/sessionAgent.js');
+//var formidable =require('formidable');
 
 //CONSTANT.remoteHost="http://172.16.6.85";
 //CONSTANT.remotePort="8089";
@@ -130,7 +131,7 @@ function update(req, res, next){
 
     //opt.data=req.body;
     //opt.url=encodeURI(opt.url);
-    loger.info(opt.url,oData);
+    //loger.info(opt.url,oData);
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -182,6 +183,17 @@ function deleteC(req, res, next){
  * @param next
  */
 function test(req, res, next){
+
+    let pfile= req.body.file;
+     loger.info("pfile-------",pfile);
+
+
+/*    var form = new formidable.IncomingForm();
+    form.encoding = 'utf-8';
+    form.parse(req,function(err, fields, files){
+        loger.info("------------->",files);
+    });*/
+
     loger.info("test post");
     res.send({"name":"fsdgsdfgf"});
 }

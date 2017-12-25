@@ -55,7 +55,7 @@ function getrecord(req, res, next){
     let caseid=req.body.caseid;
     console.log("caseid",caseid);
     opt.authorization =sessionAgent.getUserToken(req);
-    opt.url+=`caseHeader/${caseid}`;//${caseid}
+        opt.url+=`caseHeader/${caseid}`;//${caseid}
     console.log("======",opt);
     opt.callBack=function(error, response, body){
         if(error)

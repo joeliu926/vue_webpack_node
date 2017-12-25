@@ -1,0 +1,99 @@
+
+/**
+ * Created by JoeLiu on 2017-10-23.
+ */
+var CONSTANT=require('../../config/constant');
+var httpClient=require('../../utils/httpClient');
+var appUtil=require('../../utils/appUtils');
+var logingServer = require('../../security/loginserver');
+const sessionAgent = require('../../security/sessionAgent.js');
+
+var defualtCfg={
+    url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/api/',
+    contentType:'application/json'
+};
+/* 案例列表 */
+function caselist(req, res, next){
+    res.send({"AAAAAAA":"uuuuuuu"});
+
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+
+    console.log('req.body.pageNo',req.body.pageNo);
+    let pageNo=req.body.pageNo;
+    let pageSize=req.body.pageSize;
+
+    // let startDate=req.body.startDate;
+    // let endDate=req.body.endDate;
+
+    console.log("pageNo",pageNo);
+    console.log("pageSize",pageSize);
+
+
+    // opt.authorization =sessionAgent.getUserToken(req);
+    // opt.url+=`caseHeader?pageNo=${pageNo}&pageSize=${pageSize}`;
+    // console.log(opt.url);
+    //
+    // opt.callBack=function(error, response, body){
+    //     if(error)
+    //     {
+    //         res.send(error);
+    //     }
+    //     else {
+    //         res.send(JSON.parse(body));
+    //     }
+    // }
+    // httpClient(opt);
+}
+
+/*案例添加*/
+
+function caseadd(req, res, next){
+    res.send({"BBBBB":"jjjjjjjjjjj"});
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+    opt.url+=`doctor/list?tenantId=${req.body.tenantId}&userId=${req.body.userId}`;
+    console.log(opt.url);
+
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            res.send(JSON.parse(body));
+        }
+    }
+    httpClient(opt);
+}
+
+/*案例修改*/
+function caseupdata(req, res, next){
+    res.send({"CCCCCCCCCCCCC":"tttttttttttttt"});
+
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+    opt.url+=`doctor/list?tenantId=${req.body.tenantId}&userId=${req.body.userId}`;
+    console.log(opt.url);
+
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            res.send(JSON.parse(body));
+        }
+    }
+    httpClient(opt);
+}
+
+
+module.exports = {
+    caselist: caselist,
+    caseadd: caseadd,
+    caseupdata: caseupdata,
+
+}
