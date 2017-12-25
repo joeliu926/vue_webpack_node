@@ -92,6 +92,52 @@ function caseupdata(req, res, next){
     // httpClient(opt);
 }
 
+/*案例的联想下拉*/
+function selectcaselist(req, res, next){
+
+
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+    let loginName=sessionAgent.getUserId(req);
+    let productName=req.body.productName||"";
+    opt.url+=`/product/searchList?loginName=${loginName}&productName=${productName}`;
+    console.log(opt.url);
+    opt.url=encodeURI(opt.url);
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            res.send(JSON.parse(body));
+        }
+    }
+    httpClient(opt);
+}
+/*设置 医生*/
+function setdoctorlist(req, res, next){
+
+
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+    let loginName=sessionAgent.getUserId(req);
+    opt.url+=`/doctor/list?loginName=${loginName}`;
+    console.log(opt.url);
+
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            res.send(JSON.parse(body));
+        }
+    }
+    httpClient(opt);
+}
+
 /*案例删除*/
 function casedelete(req, res, next){
     defualtCfg.method="DELETE";
@@ -119,7 +165,7 @@ module.exports = {
     caselist: caselist,
     caseadd: caseadd,
     caseupdata: caseupdata,
-    casedelete:casedelete
-
-
+    casedelete:casedelete,
+    setdoctorlist:setdoctorlist,
+    selectcaselist:selectcaselist,
 }
