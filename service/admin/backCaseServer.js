@@ -69,7 +69,6 @@ function caseadd(req, res, next){
     httpClient(opt);
 }
 
-
 /*案例修改*/
 function caseupdata(req, res, next){
     res.send({"CCCCCCCCCCCCC":"tttttttttttttt"});
