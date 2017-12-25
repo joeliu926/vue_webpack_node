@@ -55,6 +55,10 @@ function registor(app) {
             require: '../routes/admin/doctor.js'
         },
         {
+            root:"/admin/product",
+            require: '../routes/admin/product.js'
+
+        },{
             root:"/admin/backcase",
             require: '../routes/admin/backcase.js'
         }
