@@ -53,6 +53,10 @@ function registor(app) {
         ,{
             root:"/admin/doctor",
             require: '../routes/admin/doctor.js'
+        },
+        {
+            root:"/admin/product",
+            require: '../routes/admin/product.js'
         }
     ];
 
