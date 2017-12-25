@@ -14,7 +14,7 @@ var defualtCfg={
 };
 /* 案例列表 */
 function caselist(req, res, next){
-    res.send({"AAAAAAA":"uuuuuuu"});
+    // res.send({"AAAAAAA":"uuuuuuu"});
 
     defualtCfg.method="GET";
     var opt=appUtil.extend({},defualtCfg);
@@ -22,6 +22,9 @@ function caselist(req, res, next){
     console.log('req.body.pageNo',req.body.pageNo);
     let pageNo=req.body.pageNo;
     let pageSize=req.body.pageSize;
+    let loginName=req.body.loginName;
+    let productName=req.body.productName;
+    let doctorId=req.body.doctorId;
 
     // let startDate=req.body.startDate;
     // let endDate=req.body.endDate;
@@ -30,30 +33,51 @@ function caselist(req, res, next){
     console.log("pageSize",pageSize);
 
 
-    // opt.authorization =sessionAgent.getUserToken(req);
-    // opt.url+=`caseHeader?pageNo=${pageNo}&pageSize=${pageSize}`;
-    // console.log(opt.url);
-    //
-    // opt.callBack=function(error, response, body){
-    //     if(error)
-    //     {
-    //         res.send(error);
-    //     }
-    //     else {
-    //         res.send(JSON.parse(body));
-    //     }
-    // }
-    // httpClient(opt);
+    opt.authorization =sessionAgent.getUserToken(req);
+    opt.url+=`caseHeader/listPage?pageNo=${pageNo}&pageSize=${pageSize}&productName=${productName}&loginName=${loginName}&doctorId=${doctorId}`;
+    console.log(opt.url);
+
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            res.send(JSON.parse(body));
+        }
+    }
+    httpClient(opt);
 }
 
 /*案例添加*/
 
 function caseadd(req, res, next){
-    res.send({"BBBBB":"jjjjjjjjjjj"});
+    // res.send({"BBBBB":"jjjjjjjjjjj"});
+    defualtCfg.method="POST";
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+
+    opt.url+=`caseHeader/buildCase`;
+    console.log(opt.url);
+    let pdata=req.body.postData;
+    opt.data=JSON.parse(pdata);
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            res.send(JSON.parse(body));
+        }
+    }
+    httpClient(opt);
+}
+function uploadPicture(req, res, next){
+    // res.send({"BBBBB":"jjjjjjjjjjj"});
     defualtCfg.method="GET";
     var opt=appUtil.extend({},defualtCfg);
     opt.authorization =sessionAgent.getUserToken(req);
-    opt.url+=`doctor/list?tenantId=${req.body.tenantId}&userId=${req.body.userId}`;
+    opt.url+=`caseHeader/buildCase`;
     console.log(opt.url);
 
     opt.callBack=function(error, response, body){
@@ -72,22 +96,22 @@ function caseadd(req, res, next){
 function caseupdata(req, res, next){
     res.send({"CCCCCCCCCCCCC":"tttttttttttttt"});
 
-    defualtCfg.method="GET";
-    var opt=appUtil.extend({},defualtCfg);
-    opt.authorization =sessionAgent.getUserToken(req);
-    opt.url+=`doctor/list?tenantId=${req.body.tenantId}&userId=${req.body.userId}`;
-    console.log(opt.url);
-
-    opt.callBack=function(error, response, body){
-        if(error)
-        {
-            res.send(error);
-        }
-        else {
-            res.send(JSON.parse(body));
-        }
-    }
-    httpClient(opt);
+    // defualtCfg.method="GET";
+    // var opt=appUtil.extend({},defualtCfg);
+    // opt.authorization =sessionAgent.getUserToken(req);
+    // opt.url+=`doctor/list?tenantId=${req.body.tenantId}&userId=${req.body.userId}`;
+    // console.log(opt.url);
+    //
+    // opt.callBack=function(error, response, body){
+    //     if(error)
+    //     {
+    //         res.send(error);
+    //     }
+    //     else {
+    //         res.send(JSON.parse(body));
+    //     }
+    // }
+    // httpClient(opt);
 }
 
 
@@ -95,5 +119,6 @@ module.exports = {
     caselist: caselist,
     caseadd: caseadd,
     caseupdata: caseupdata,
+    uploadPicture:uploadPicture
 
 }
