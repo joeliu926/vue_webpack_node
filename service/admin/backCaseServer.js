@@ -20,21 +20,17 @@ function caselist(req, res, next){
     var opt=appUtil.extend({},defualtCfg);
 
     console.log('req.body.pageNo',req.body.pageNo);
-    let pageNo=req.body.pageNo;
-    let pageSize=req.body.pageSize;
-    let loginName=req.body.loginName;
-    let productName=req.body.productName;
-    let doctorId=req.body.doctorId;
+    let pageNo=req.body.pageNo||1;
+    let pageSize=req.body.pageSize||12;
+    let loginName=sessionAgent.getUserId(req);
+    let productName=req.body.productName||"";
+    let doctorId=req.body.doctorId||"";
 
     // let startDate=req.body.startDate;
     // let endDate=req.body.endDate;
-
-    console.log("pageNo",pageNo);
-    console.log("pageSize",pageSize);
-
-
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`caseHeader/listPage?pageNo=${pageNo}&pageSize=${pageSize}&productName=${productName}&loginName=${loginName}&doctorId=${doctorId}`;
+    opt.url=encodeURI(opt.url);
     console.log(opt.url);
 
     opt.callBack=function(error, response, body){
@@ -96,11 +92,34 @@ function caseupdata(req, res, next){
     // httpClient(opt);
 }
 
+/*案例删除*/
+function casedelete(req, res, next){
+    defualtCfg.method="DELETE";
+
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+    let id=req.body.id;
+    opt.url+=`caseHeader/${id}`;
+    opt.url=encodeURI(opt.url);
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            body = JSON.parse(body);
+            res.send(body);
+        }
+    }
+    httpClient(opt);
+}
+
 
 module.exports = {
     caselist: caselist,
     caseadd: caseadd,
     caseupdata: caseupdata,
+    casedelete:casedelete
 
 
 }

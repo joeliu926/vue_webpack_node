@@ -12,7 +12,9 @@ router.post('/backcaseadd', function(req, res, next) {
 router.post('/backcaseupdata', function(req, res, next) {
     backCaseServer.caseupdata(req, res, next);
 });
-
+router.post('/casedelete', function(req, res, next) {
+    backCaseServer.casedelete(req, res, next);
+});
 
 
 
