@@ -101,6 +101,6 @@ module.exports = {
     caselist: caselist,
     caseadd: caseadd,
     caseupdata: caseupdata,
-    uploadPicture:uploadPicture
+
 
 }
