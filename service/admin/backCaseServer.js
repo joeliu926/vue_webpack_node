@@ -72,25 +72,7 @@ function caseadd(req, res, next){
     }
     httpClient(opt);
 }
-function uploadPicture(req, res, next){
-    // res.send({"BBBBB":"jjjjjjjjjjj"});
-    defualtCfg.method="GET";
-    var opt=appUtil.extend({},defualtCfg);
-    opt.authorization =sessionAgent.getUserToken(req);
-    opt.url+=`caseHeader/buildCase`;
-    console.log(opt.url);
 
-    opt.callBack=function(error, response, body){
-        if(error)
-        {
-            res.send(error);
-        }
-        else {
-            res.send(JSON.parse(body));
-        }
-    }
-    httpClient(opt);
-}
 
 /*案例修改*/
 function caseupdata(req, res, next){
