@@ -182,7 +182,6 @@ module.exports = {
     caseupdate:caseupdate,
     caselist: caselist,
     caseadd: caseadd,
-    caseupdata: caseupdata,
     casedelete:casedelete,
     setdoctorlist:setdoctorlist,
     selectcaselist:selectcaselist,
