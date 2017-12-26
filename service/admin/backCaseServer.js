@@ -57,6 +57,7 @@ function caseadd(req, res, next){
     console.log(opt.url);
     let pdata=req.body.postData;
     opt.data=JSON.parse(pdata);
+    opt.data.loginName = sessionAgent.getUserId(req);
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -77,6 +78,7 @@ function caseupdate(req, res, next){
     opt.url+=`caseHeader/updateCase`;
     let pdata=req.body.postData;
     opt.data=JSON.parse(pdata);
+    opt.data.loginName = sessionAgent.getUserId(req);
     opt.callBack=function(error, response, body){
         if(error)
         {

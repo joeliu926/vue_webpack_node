@@ -21,7 +21,7 @@ function rolelist(req, res, next){
 
     var opt=appUtil.extend({},defualtCfg);
     opt.authorization =sessionAgent.getUserToken(req);
-    opt.url+=`roles/list?tenantId=${userInfo.tenantId}&userId=${userInfo.id}`;
+    opt.url+=`roles/list?tenantId=${userInfo.clinic[0].clinicId}&userId=${userInfo.id}`;
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -42,7 +42,7 @@ function rolelistpage(req, res, next){
 
     var opt=appUtil.extend({},defualtCfg);
     opt.authorization =sessionAgent.getUserToken(req);
-    opt.url+=`roles?tenantId=${userInfo.tenantId}&userId=${userInfo.id}&pageNo=${req.body.pageNo}&pageSize=${req.body.pageSize}`;
+    opt.url+=`roles?tenantId=${userInfo.clinic[0].clinicId}&userId=${userInfo.id}&pageNo=${req.body.pageNo}&pageSize=${req.body.pageSize}`;
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -62,13 +62,8 @@ function userlist(req, res, next){
     let userInfo = sessionAgent.getUserInfo(req);
     var opt=appUtil.extend({},defualtCfg);
     opt.authorization =sessionAgent.getUserToken(req);
-
-    console.log('req.body.name',req.body.name);
     req.body.name = encodeURI(req.body.name);
-    opt.url+=`users?tenantId=${userInfo.tenantId}&pageNo=${req.body.pageNo}&pageSize=${req.body.pageSize}&name=${req.body.name?req.body.name:''}`;
-
-    console.log('req.body',req.body);
-
+    opt.url+=`users?tenantId=${userInfo.clinic[0].clinicId}&pageNo=${req.body.pageNo}&pageSize=${req.body.pageSize}&name=${req.body.name?req.body.name:''}`;
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -120,10 +115,12 @@ function getroleinfo(req, res, next){
 
 function updateuser(req, res, next){
     defualtCfg.method="POST";
+    let userInfo = sessionAgent.getUserInfo(req);
     var opt=appUtil.extend({},defualtCfg);
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`users/saveOrUpdate`;
     opt.data=req.body;
+    opt.data.tenantId= userInfo.clinic[0].clinicId;
     opt.callBack=function(error, response, body){
         if(error)
         {
@@ -139,6 +136,7 @@ function updateuser(req, res, next){
 
 function deleteuser(req, res, next){
     defualtCfg.method="DELETE";
+
     var opt=appUtil.extend({},defualtCfg);
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`users/${req.body.userId}`;
