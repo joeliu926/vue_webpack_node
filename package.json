@@ -7,7 +7,7 @@
    "dev_web": "node ./bin/www 8023 http://140.143.185.73 8083 http://localhost:8028",
     "dev": "concurrently \"npm run dev_ws\" \"npm run dev_web\"",
     "test_ws": "node ./webSocketService/bin/ws.js 8054",
-    "test_web": "node ./bin/www 8024 http://140.143.185.73 8083 http://123.207.213.50:8001",
+    "test_web": "node ./bin/www 8024 http://140.143.185.73 8083 http://140.143.184.52:8001",
     "test": "concurrently \"npm run test_ws\" \"npm run test_web\"",
     "dist": "forever start ./bin/www 8023 http://140.143.184.52 8082 https://27478500.qcloud.la",
     "_comment": "_LOCALPORT_,  _REMOTEURL_, _REMOTEPORT_,_ORIGINCONFIG_"
