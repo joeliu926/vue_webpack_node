@@ -118,8 +118,6 @@ function getroleinfo(req, res, next){
     httpClient(opt);
 }
 
-
-
 function updateuser(req, res, next){
     defualtCfg.method="POST";
     var opt=appUtil.extend({},defualtCfg);
