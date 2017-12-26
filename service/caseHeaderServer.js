@@ -49,8 +49,8 @@ function list(req, res, next){
 
     opt.authorization =sessionAgent.getUserToken(req);
     let productCode = req.body.productCode;
-    let doctorName = req.body.doctorName;
-    opt.url+=`list?loginName=${sessionAgent.getUserId(req)}&productCode=${productCode}&doctorName=${doctorName}`;
+    let doctorId = req.body.doctorId;
+    opt.url+=`list?loginName=${sessionAgent.getUserId(req)}&productCode=${productCode}&doctorId=${doctorId}`;
     opt.url=encodeURI(opt.url);
     console.log(opt.url);
 
