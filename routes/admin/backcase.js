@@ -17,6 +17,14 @@ router.post('/casedelete', function(req, res, next) {
     backCaseServer.casedelete(req, res, next);
 });
 
+router.post('/casedetail', function(req, res, next) {
+    backCaseServer.casedetail(req, res, next);
+});
+
+router.post('/caseupdate', function(req, res, next) {
+    backCaseServer.caseupdate(req, res, next);
+});
+
 router.post('/setdoctorlist', function(req, res, next) {
     backCaseServer.setdoctorlist(req, res, next);
 });

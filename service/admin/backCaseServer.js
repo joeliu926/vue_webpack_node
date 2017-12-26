@@ -70,25 +70,42 @@ function caseadd(req, res, next){
 }
 
 /*案例修改*/
-function caseupdata(req, res, next){
-    res.send({"CCCCCCCCCCCCC":"tttttttttttttt"});
+function caseupdate(req, res, next){
+    defualtCfg.method="POST";
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+    opt.url+=`caseHeader/updateCase`;
+    let pdata=req.body.postData;
+    opt.data=JSON.parse(pdata);
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            res.send(JSON.parse(body));
+        }
+    }
+    httpClient(opt);
+}
 
-    // defualtCfg.method="GET";
-    // var opt=appUtil.extend({},defualtCfg);
-    // opt.authorization =sessionAgent.getUserToken(req);
-    // opt.url+=`doctor/list?tenantId=${req.body.tenantId}&userId=${req.body.userId}`;
-    // console.log(opt.url);
-    //
-    // opt.callBack=function(error, response, body){
-    //     if(error)
-    //     {
-    //         res.send(error);
-    //     }
-    //     else {
-    //         res.send(JSON.parse(body));
-    //     }
-    // }
-    // httpClient(opt);
+
+/*案例详情*/
+function casedetail(req, res, next){
+    defualtCfg.method="GET";
+    var opt=appUtil.extend({},defualtCfg);
+    opt.authorization =sessionAgent.getUserToken(req);
+    opt.url+=`caseHeader/${req.body.id}`;
+    opt.callBack=function(error, response, body){
+        if(error)
+        {
+            res.send(error);
+        }
+        else {
+            res.send(JSON.parse(body));
+        }
+    }
+    httpClient(opt);
 }
 
 /*案例的联想下拉*/
@@ -161,6 +178,8 @@ function casedelete(req, res, next){
 
 
 module.exports = {
+    casedetail:casedetail,
+    caseupdate:caseupdate,
     caselist: caselist,
     caseadd: caseadd,
     caseupdata: caseupdata,
