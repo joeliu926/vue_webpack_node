@@ -56,7 +56,6 @@ function create(req, res, next){
 function list(req, res, next){
     defualtCfg.method="GET";
     var opt=appUtil.extend({},defualtCfg);
-
     opt.authorization =sessionAgent.getUserToken(req);
     let pageNo = req.body.pageNo||"1";
     let pageSize = req.body.pageSize||"1";
