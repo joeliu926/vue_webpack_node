@@ -9,7 +9,7 @@ var logingServer = require('../../security/loginserver');
 const sessionAgent = require('../../security/sessionAgent.js');
 
 var defualtCfg={
-    url:"http://140.143.185.73:8083/api/",
+    url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/api/',
     contentType:'application/json'
 };
 /**
