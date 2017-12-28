@@ -3,26 +3,33 @@
  */
 var request = require('request');
 const util = require('util');
+var loger=require('./loger');
 var querystring = require("querystring");
 var requestType={
     'multipart/form-data':function(arg){
-        request.post({url:arg.url, formData:arg.data}, function (error, response, body) {
+        request.post({url:arg.url, formData:arg.data,headers: {
+            "authorization":arg.authorization
+        }}, function (error, response, body) {
             util.isFunction(arg.callBack)&&arg.callBack(error, response, body);
         })
     },
     'application/x-www-form-urlencoded':function(arg){
-        request.post({url:arg.url, form:arg.data}, function(error, response, body) {
+        request.post({url:arg.url, form:arg.data,headers: {
+            "authorization":arg.authorization
+        }}, function(error, response, body) {
             util.isFunction(arg.callBack)&&arg.callBack(error, response, body);
         })
     },
     'application/json':function(arg){
-        console.log(arg.url,JSON.stringify(arg.data));
+        //console.log(arg.url,JSON.stringify(arg.data));
+        loger.info(arg.url,JSON.stringify(arg.data));
         request({
             url:arg.url,//arg.url,
             method:arg.method, //"POST",
             //json: true,
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                "authorization":arg.authorization
             },
             body:JSON.stringify(arg.data)
         }, function(error, response, body) {
@@ -44,8 +51,11 @@ module.exports = function(arg){
         requestType[arg.contentType](arg);
     }else{
         var params=querystring.stringify(arg.data);
+        loger.info(arg.url,params);
         arg.url+=/\?+/.test(arg.url)?'&'+params:'?'+params;
-        request(arg.url, function (error, response, body) {
+        request({url:arg.url,headers: {
+            "authorization":arg.authorization
+        }}, function (error, response, body) {
             util.isFunction(arg.callBack)&&arg.callBack(error, response, body);
         })
     }

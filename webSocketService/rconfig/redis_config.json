@@ -1,0 +1,10 @@
+{
+  "_host":"127.0.0.1",
+  "host":"140.143.184.52",
+  "port": 6379,
+  "max_clients": 20,
+  "perform_checks": false,
+  "database": 0,
+  "options": {"auth_pass":"mc171704hurry"},
+  "dbIndex":0
+}

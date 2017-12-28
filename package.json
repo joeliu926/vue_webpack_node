@@ -3,16 +3,33 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "dev_ws": "node ./webSocketService/bin/ws.js 8053",
+   "dev_web": "node ./bin/www 8023 http://140.143.185.73 8083 http://localhost:8028",
+    "dev": "concurrently \"npm run dev_ws\" \"npm run dev_web\"",
+    "test_ws": "node ./webSocketService/bin/ws.js 8054",
+    "test_web": "node ./bin/www 8024 http://140.143.184.52 8082 http://140.143.184.52:8001",
+    "test": "concurrently \"npm run test_ws\" \"npm run test_web\"",
+    "dist": "forever start ./bin/www 8023 http://140.143.184.52 8082 https://nihaomc.com",
+    "_comment": "_LOCALPORT_,  _REMOTEURL_, _REMOTEPORT_,_ORIGINCONFIG_"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
+    "concurrently": "^3.5.1",
     "cookie-parser": "^1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
+    "express-session": "^1.15.6",
+    "formidable": "^1.1.1",
+    "https": "^1.0.0",
     "jade": "^1.11.0",
+    "log4js": "^2.4.1",
     "morgan": "^1.9.0",
+    "node-rsa": "^0.4.2",
+    "node-uuid": "^1.4.8",
+    "redis": "^2.8.0",
+    "redis-connection-pool": "^1.6.1",
     "request": "^2.83.0",
-    "serve-favicon": "^2.4.5"
+    "serve-favicon": "^2.4.5",
+    "ws": "^3.3.2"
   }
 }

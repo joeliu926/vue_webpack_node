@@ -2,8 +2,8 @@
  * Created by JoeLiux on 2017-10-23.
  */
 module.exports = {
-    remoteHost:'http://127.0.0.1',
-    remotePort:'8080',
+    remoteHost:"http://140.143.185.73",  //http://101.132.161.222:8082
+    remotePort:"8083",
     cookie: {
         identityKey:"rky_mc_web_node",
         maxAge: 12 * 60 * 60 * 1000//24 * 60 * 60 * 1000
@@ -25,26 +25,27 @@ module.exports = {
         /**caas登录用户ID*/
         userId: '__USER_ID__',
         /**登录用户名称*/
-        userName: '__USER_NAME__',
+        userInfo: '__USER_INFO__',
         /**登录时间 */
         loginTime: '__LOGIN_TIME__',
         /**登录次数*/
         loginCount: '__LOGIN_COUNT__',
         accessInfo: '__AUTH_INFO__',
-        /**ipa 用户信息  */
-        ipaUserInfo: '__IPA_USER_INFO__',
         xAuthToken: '__X_AUTH_TOKEN__',
         resourceCode: '__RESOURCE_CODE__'
     },
     //白名单
     sessionWhiteList: [
-
+        '/user/checkloginstate',
+        '/user/login/entry',
+        '/api/getpublickey'
     ],
     accessWhiteList: [
-
-    ],
-    //访问权限数组 (维护判断也在使用)
-    accessArr: [
+        '/login/entry',
+        '/login',
+        '/logout',
+        '/getMenus',
+        '/getUserInfo'
     ],
     //回数code
     code: {
@@ -54,7 +55,6 @@ module.exports = {
         accessErr: 8003,
         userInfoErr:8004,
         authErr:8005,
-        chorusRoleErr:8006,
         dataErr:8100,
         //维护中
         operationStatus:8200

@@ -4,31 +4,40 @@
 
 var CONSTANT=require('../config/constant');
 var httpClient=require('../utils/httpClient');
-//var appUtil=require('../utils/appUtil');
+var logingServer = require('../security/loginserver');
+const sessionAgent = require('../security/sessionAgent.js');
+//var appUtil=require('../utils/appUtils');
 var defualtCfg={
     url:CONSTANT.remoteHost+":"+CONSTANT.remotePort+'/dashboard/platform',
     contentType:'application/json'
 };
 
 function userate(req, res, next){
-
     res.send({'aaa':'aaaa'});
-    /*
-    defualtCfg.method="GET";
-    var opt=appUtil.extend({},defualtCfg)
-    opt.url+=`/resource/trend`;
-    opt.callBack=function(error, response, body){
-        if(error)
-        {
-            res.send(error);
-        }
-        else {
-            res.send(JSON.parse(body));
-        }
-    }
-    httpClient(opt);*/
+}
+
+function getuserinfo(req, res, next){
+    //sessionAgent.getUserInfo(req);
+    res.send(sessionAgent.getUserInfo(req));
+}
+
+
+function usertimes(req,res,next){
+	 res.send({'usertimes':'this is user times aaaaa'});
+}
+//登录
+function loginEntry(req,res,next){
+    logingServer.loginEntry(req,res);
+}
+//登出
+function loginOutEntry(req,res,next){
+    logingServer.loginOutEntry(req,res);
 }
 
 module.exports = {
-    userate: userate
+    userate: userate,
+    usertimes:usertimes,
+    loginEntry:loginEntry,
+    loginOutEntry:loginOutEntry,
+    getuserinfo:getuserinfo
 }
