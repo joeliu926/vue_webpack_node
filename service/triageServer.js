@@ -44,10 +44,9 @@ function getlist(req, res, next){
     let status=req.body.status;
     let startDate=req.body.startDate;
     let endDate=req.body.endDate;
-
     console.log("pageNo",pageNo);
     opt.authorization =sessionAgent.getUserToken(req);
-    opt.url+=`triage/list?pageNo=${pageNo}&pageSize=${pageSize}&status=${status}&startDate=${startDate}&endDate=${endDate}`;
+    opt.url+=`triage/list?pageNo=${pageNo}&pageSize=${pageSize}&status=${status}&startDate=${startDate}&endDate=${endDate}&loginName=${sessionAgent.getUserId(req)}`;
     //?pageNo=1&pageSize=10&repage=3&status=1
     //?pageNo=${pageNo}&pageSize=${pageSize}&repage=${repage}&status=${status}
     console.log("======",opt.url);
