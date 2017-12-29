@@ -51,6 +51,7 @@ module.exports = function(arg){
         requestType[arg.contentType](arg);
     }else{
         var params=querystring.stringify(arg.data);
+        loger.info(arg.url,params);
         arg.url+=/\?+/.test(arg.url)?'&'+params:'?'+params;
         request({url:arg.url,headers: {
             "authorization":arg.authorization
