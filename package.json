@@ -7,8 +7,8 @@
     "dev_web": "node ./bin/www 8023 http://140.143.185.73 8083 http://localhost:8028",
     "dev": "concurrently \"npm run dev_ws\" \"npm run dev_web\"",
 
-    "sdev_ws": "forever start ./webSocketService/bin/ws.js 8055",
-    "sdev_web": "forever start ./bin/www 8025 http://140.143.185.73 8083 http://sit.nihaomc.com",
+    "sdev_ws": "forever start  ./webSocketService/bin/ws.js 8055",
+    "sdev_web": "forever start  ./bin/www 8025 http://140.143.185.73 8083 https://sit.nihaomc.com",
     "sdev": "concurrently \"npm run sdev_ws\" \"npm run sdev_web\"",
 
     "test_ws": "forever start ./webSocketService/bin/ws.js 8054",
