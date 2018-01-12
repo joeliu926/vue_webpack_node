@@ -3,13 +3,21 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev_ws": "node ./webSocketService/bin/ws.js 8053",
-   "dev_web": "node ./bin/www 8023 http://140.143.185.73 8083 http://localhost:8028",
+    "dev_ws": "node ./webSocketService/bin/ws.js 8055",
+    "dev_web": "node ./bin/www 8023 http://140.143.185.73 8083 http://localhost:8028",
     "dev": "concurrently \"npm run dev_ws\" \"npm run dev_web\"",
-    "test_ws": "node ./webSocketService/bin/ws.js 8054",
-    "test_web": "node ./bin/www 8024 http://140.143.184.52 8082 http://140.143.184.52:8001",
+
+    "sdev_ws": "forever start ./webSocketService/bin/ws.js 8055",
+    "sdev_web": "forever start ./bin/www 8025 http://140.143.185.73 8083 http://sit.nihaomc.com",
+    "sdev": "concurrently \"npm run sdev_ws\" \"npm run sdev_web\"",
+
+    "test_ws": "forever start ./webSocketService/bin/ws.js 8054",
+    "test_web": "forever start ./bin/www 8024 http://140.143.185.73 8086 https://uat.nihaomc.com",
     "test": "concurrently \"npm run test_ws\" \"npm run test_web\"",
-    "dist": "forever start ./bin/www 8023 http://140.143.184.52 8082 https://nihaomc.com",
+
+    "dist_ws": "forever start ./webSocketService/bin/ws.js 8053",
+    "dist_web": "forever start ./bin/www 8023 http://140.143.184.52 8082 https://nihaomc.com",
+    "dist": "concurrently \"npm run dist_ws\" \"npm run dist_web\"",
     "_comment": "_LOCALPORT_,  _REMOTEURL_, _REMOTEPORT_,_ORIGINCONFIG_"
   },
   "dependencies": {
