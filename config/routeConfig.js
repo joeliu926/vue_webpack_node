@@ -63,6 +63,12 @@ function registor(app) {
         },{
             root:"/admin/common",
             require: '../routes/admin/common.js'
+        },{
+            root:"/admin/postercategory",
+            require: '../routes/admin/postercategory.js'
+        },{
+            root:"/admin/posterinfo",
+            require: '../routes/admin/posterinfo.js'
         }
     ];
 
