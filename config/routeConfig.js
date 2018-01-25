@@ -72,6 +72,9 @@ function registor(app) {
         },{
             root:"/admin/posterformat",
             require: '../routes/admin/posterformat.js'
+        },{
+            root:"/admin/grab",
+            require: '../routes/admin/grab.js'
         }
     ];
 
