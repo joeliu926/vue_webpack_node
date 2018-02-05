@@ -75,6 +75,9 @@ function registor(app) {
         },{
             root:"/admin/grab",
             require: '../routes/admin/grab.js'
+        },{
+            root:"/admin/gift",
+            require: '../routes/admin/gift.js'
         }
     ];
 
