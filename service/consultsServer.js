@@ -1,6 +1,7 @@
 var CONSTANT=require('../config/constant');
 var httpClient=require('../utils/httpClient');
 var appUtil=require('../utils/appUtils');
+var loger=require('../utils/loger');
 var logingServer = require('../security/loginserver');
 const sessionAgent = require('../security/sessionAgent.js');
 
@@ -16,12 +17,14 @@ function getrecord(req, res, next){
     let endD = req.body.endDate?req.body.endDate:'';
     opt.authorization =sessionAgent.getUserToken(req);
     opt.url+=`consultStatis?loginName=${sessionAgent.getUserId(req)}&beginDate=${startD}&endDate=${endD}`;
+    loger.info("opt.url---getrecord----",opt.url);
     opt.callBack=function(error, response, body){
         if(error)
         {
             res.send(error);
         }
         else {
+            loger.info("------getrecord--------",body);
             body = JSON.parse(body);
             res.send(body);
         }
