@@ -78,6 +78,9 @@ function registor(app) {
         },{
             root:"/admin/gift",
             require: '../routes/admin/gift.js'
+        },{
+            root:"/admin/mediabase",
+            require: '../routes/admin/mediaBase.js'
         }
     ];
 
